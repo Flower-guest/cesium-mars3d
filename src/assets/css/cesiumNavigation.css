@@ -1,0 +1,65 @@
+.compass {
+  bottom: 160px;
+  right: 15px;
+  top: auto;
+  left: auto;
+}
+
+.navigation-controls {
+  background-color: rgba(35, 60, 77, 0.8);
+  bottom: 56px;
+  left: auto;
+  top: auto;
+  right: 28px;
+  width: 46px !important;
+}
+
+.navigation-control {
+  height: 40px;
+}
+
+.navigation-control-icon-zoom-in {
+  font-size: 35px !important;
+}
+
+.navigation-control-icon-reset {
+  left: 14px !important;
+  width: 16px !important;
+  height: 30px !important;
+}
+
+.navigation-control-icon-zoom-out {
+  height: 41px;
+  line-height: 33px;
+  font-size: 50px !important;
+}
+
+.navigation-controls :nth-child(2) {
+  display: none;
+}
+
+.marsGreenGradientPnl {
+  width: 100px;
+  text-align: center;
+  background-image: linear-gradient(to right, #565d39, #00ffc3);
+  position: absolute;
+  left: -56px;
+  bottom: 28px;
+  cursor: default;
+  padding: 5px;
+  border: 1px solid #9c9944e8;
+}
+
+.marsGreenGradientPnl:hover {
+  border: 1px solid rgb(9, 255, 0);
+}
+
+.marsGreenGradientPnl::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  bottom: -30px;
+  height: 30px;
+  border-left: 2px dashed #c5e22770;
+}
+
