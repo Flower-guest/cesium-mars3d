@@ -145,7 +145,22 @@ export const toolMenu = {
       eventType: "measure",
     },
   ],
-  kjgh: [],
+  kjgh: [
+    {
+      name: "qygh",
+      menuType: "qygh",
+      eventType: "geojson",
+      changeName: "LHS",
+      geoType: "polygonLine",
+    },
+    {
+      name: "jtgh",
+      menuType: "jtgh",
+      eventType: "geojson",
+      changeName: "LHS",
+      geoType: "polygonLine",
+    },
+  ],
   tdgh: [
     {
       name: "土地利用",

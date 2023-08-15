@@ -138,6 +138,83 @@ class AddScene {
     //   : this.billCollection.entities.add(billboardLabel);
     this.billCollection.entities.add(billboardLabel);
   }
+  // /**
+  //  * @description: 添加marker标与lebel
+  //  * @param {*} height：高度
+  //  * @param {*} url：图片地址
+  //  * @param {*} name：label文案
+  //  * @param {*} color：label背景颜色
+  //  * @param {*} info：marker信息
+  //  */
+  // addBillboard(
+  //   lng: number,
+  //   lat: number,
+  //   height: number,
+  //   url: string,
+  //   name: string,
+  //   color: string,
+  //   info: any = "",
+  //   show = false,
+  //   imgwidth = 50,
+  //   imgheight = 60
+  // ) {
+  //   const imgUrl = new URL(`../../assets/img/${url}`, import.meta.url).href;
+  //   const billboardLabel: any = new Cesium.Entity({
+  //     name,
+  //     properties: { info },
+  //     position: Cesium.Cartesian3.fromDegrees(lng, lat, height),
+  //     show,
+  //     billboard: {
+  //       //如果有图片路径就展示marker
+  //       image: imgUrl,
+  //       width: imgwidth,
+  //       height: imgheight,
+  //       eyeOffset: new Cesium.Cartesian3(0, 0, -100),
+  //       scaleByDistance: new Cesium.NearFarScalar(100, 0.6, 2000, 0.6),
+  //       show: url ? true : false,
+  //       heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND, //高度参考
+  //       verticalOrigin:
+  //         info.type == "xz"
+  //           ? Cesium.VerticalOrigin.BOTTOM
+  //           : Cesium.VerticalOrigin.CENTER, //垂直原点
+  //       horizontalOrigin: Cesium.HorizontalOrigin.RIGHT,
+  //     },
+  //     label: {
+  //       text: name,
+  //       show: true,
+  //       showBackground: true,
+  //       backgroundColor: Cesium.Color.fromCssColorString(color),
+  //       font: "normal 14px Microsoft YaHei UI",
+  //       backgroundPadding: new Cesium.Cartesian2(8, 8),
+  //       scale: 0.9,
+  //       style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+  //       outlineColor: Cesium.Color.WHITE,
+  //       outlineWidth: 2,
+  //       horizontalOrigin: Cesium.HorizontalOrigin.LEFT,
+  //       verticalOrigin: Cesium.VerticalOrigin.CENTER, //垂直原点
+  //       heightReference: Cesium.HeightReference.RELATIVE_TO_GROUND, //高度参考
+  //       pixelOffset: new Cesium.Cartesian2(0, -25),
+  //       eyeOffset: new Cesium.Cartesian3(0, 0, -100),
+  //       distanceDisplayCondition: new Cesium.DistanceDisplayCondition(
+  //         0,
+  //         1800000
+  //       ), // 设置标签的可视范围为0到10000米
+  //     },
+  //   });
+  //   if (info?.showDis) {
+  //     //如果有可视范围属性
+  //     billboardLabel.billboard.distanceDisplayCondition =
+  //       new Cesium.DistanceDisplayCondition(0, info.showDis);
+  //     billboardLabel.label.distanceDisplayCondition =
+  //       new Cesium.DistanceDisplayCondition(0, info.showDis);
+  //   }
+  //   billboardLabel["eventType"] = info?.eventType || null; //给marker添加eventType属性
+  //   //  如果类型为临时marker则添加至临时marker集合里面
+  //   // info?.type == "tempBill"
+  //   //   ? this.tempBillCollection.entities.add(billboardLabel)
+  //   //   : this.billCollection.entities.add(billboardLabel);
+  //   this.billCollection.entities.add(billboardLabel);
+  // }
   // 添加面状效果
   // addPolygonBuff(buffarry, color) {
   //   //贴地

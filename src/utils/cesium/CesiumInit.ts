@@ -111,7 +111,7 @@ class CesiumInit {
     this.mars3dAdd.addGeoJsonLayer({
       data: dJSON[4].url,
       outCol: Cesium.Color.GAINSBORO,
-      opc: 0.4,
+      opc: 0.5,
       color: "rgb(0,0,0)",
       name: "LHSBJX",
       mask: true,
@@ -123,12 +123,12 @@ class CesiumInit {
       this.addLine(dLines[i].url);
     }
     // 加载图层
-    this.mars3dAdd.addXyzLayer({
-      url:
-        import.meta.env.VITE_BASE_URL +
-        "/DOM_LHS_PT_CS_WGS1984_Service/{z}/{x}/{y}.png", // 图层url
-      layer: "lhs", // 图层名
-    });
+    // this.mars3dAdd.addXyzLayer({
+    //   url:
+    //     import.meta.env.VITE_BASE_URL +
+    //     "/DOM_LHS_PT_CS_WGS1984_Service/{z}/{x}/{y}.png", // 图层url
+    //   layer: "lhs", // 图层名
+    // });
     this.addScene.changeViews("LHS", 8);
   }
   addLine(res) {

@@ -139,26 +139,29 @@ const changeViews = (val) => {
 const addLinePrimitive = (val) => {
   const res: any = val.lineUrl;
   for (let i = 0; i < res.features.length; i++) {
-    const { properties, geometry } = res.features[i];
-    mars3dAdd.addPolylinePrimitive({
-      positions: geometry.coordinates,
-      width: 8,
-      color: properties.color,
-      di: true,
-      diFar: 200000,
-      label: {
-        text: properties.name,
+      const { properties, geometry } = res.features[i];
+      const option = properties?.style
+        ? { positions: geometry.coordinates, style: properties.style }
+        : {
+        positions: geometry.coordinates,
+        width: 8,
         color: properties.color,
-        clamp: true,
-        fs: 18,
-        addHeight: 20,
-        vD: false,
-        bg: true,
         di: true,
         diFar: 200000,
-      },
-    });
-  }
+        label: {
+          text: properties.name,
+          color: properties.color,
+          clamp: true,
+          fs: 18,
+          addHeight: 20,
+          vD: false,
+          bg: true,
+          di: true,
+          diFar: 200000,
+        },
+      };
+      mars3dAdd.addPolylinePrimitive(option);
+    }
 };
 onMounted(() => {
   nextTick(() => {
