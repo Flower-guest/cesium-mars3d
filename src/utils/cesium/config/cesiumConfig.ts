@@ -8,6 +8,7 @@ import LHSCZKFBJXAreas from "@/assets/json/LHSCZKFBJXAreas.json";
 import LHSSTBHHXAreas from "@/assets/json/LHSSTBHHXAreas.json";
 import LHSTDLYGHAreas from "@/assets/json/LHSTDLYGHAreas.json";
 import LHSYJJBNTBHX from "@/assets/json/LHSYJJBNTBHX.json";
+import LHSJTZSLine from "@/assets/json/LHSJTZSLine.json";
 import { gjtArr, markerArr } from "./markerConfig";
 // 加载cesium的domId
 export const CESIUM_ID = "cesiumContainer";
@@ -219,13 +220,6 @@ export const dJSON = [
     lineWidth: 1,
     polygonColor: "rgba(240,192,99.6)",
   },
-  {
-    name: "关闭规划图层",
-    height: 50,
-    pageType: "zs",
-    eventType: "",
-    dataType: "deleteLine",
-  },
 ];
 // 加载模型数据
 export const dTiles = [
@@ -251,6 +245,12 @@ export const dTiles = [
       sca: 0.2,
     },
     isMX: true,
+  },
+];
+// 加载线数据
+export const dLines = [
+  {
+    url: LHSJTZSLine,
   },
 ];
 // 新增点位的回显与默认marker点位配置

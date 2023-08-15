@@ -12,6 +12,7 @@ import {
   map3d,
   dJSON,
   dTiles,
+  dLines,
   billboard,
   CESIUM_ID,
 } from "./config/cesiumConfig";
@@ -110,16 +111,32 @@ class CesiumInit {
     this.mars3dAdd.addGeoJsonLayer({
       data: dJSON[4].url,
       outCol: Cesium.Color.GAINSBORO,
-      opc: 0,
+      opc: 0.4,
+      color: "rgb(0,0,0)",
       name: "LHSBJX",
+      mask: true,
     });
     // 显示指定Billboard
     this.addScene.showBillboard("all", toolMenu.cjdl);
     // 加载线
-    const res: any = toolMenu.cjdl[1].lineUrl;
+    for (let i = 0; i < dLines.length; i++) {
+      this.addLine(dLines[i].url);
+    }
+    // 加载图层
+    this.mars3dAdd.addXyzLayer({
+      url:
+        import.meta.env.VITE_BASE_URL +
+        "/DOM_LHS_PT_CS_WGS1984_Service/{z}/{x}/{y}.png", // 图层url
+      layer: "lhs", // 图层名
+    });
+    this.addScene.changeViews("LHS", 8);
+  }
+  addLine(res) {
     for (let i = 0; i < res.features.length; i++) {
       const { properties, geometry } = res.features[i];
-      this.mars3dAdd.addPolylinePrimitive({
+      const option = properties?.style
+        ? { positions: geometry.coordinates, style: properties.style }
+        : {
         positions: geometry.coordinates,
         width: 8,
         color: properties.color,
@@ -136,16 +153,9 @@ class CesiumInit {
           di: true,
           diFar: 200000,
         },
-      });
+      };
+      this.mars3dAdd.addPolylinePrimitive(option);
     }
-    // 加载图层
-    this.mars3dAdd.addXyzLayer({
-      url:
-        import.meta.env.VITE_BASE_URL +
-        "/DOM_LHS_PT_CS_WGS1984_Service/{z}/{x}/{y}.png", // 图层url
-      layer: "lhs", // 图层名
-    });
-    this.addScene.changeViews("LHS", 8);
   }
 }
 

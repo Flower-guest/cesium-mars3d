@@ -119,7 +119,7 @@ const showInfoTable = (info, type) => {
         //如果为删除就不执行下面
         if (gltype == "delete" || gltype == "add") {
           return;
-        } else if (gltype == "edit" && info.infoVal.type == "xzzc") {
+        } else if (gltype == "edit" && info.infoVal.type == "xz") {
           // rightPage.value.activeBtn = 0; //取消编辑资产按钮高亮
           // rightPage.value.glType = ""; //将管理状态重置为新增
           LocalCache.setCache("glType", "");

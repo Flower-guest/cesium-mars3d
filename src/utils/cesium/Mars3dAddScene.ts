@@ -21,7 +21,7 @@ export default class MeasureUnit {
     const outline = option.outline || true;
     this.geoJsonLayer.push(
       new mars3d.layer.GeoJsonLayer({
-        name:option?.name || null,
+        name: option?.name || null,
         url: option.url, //geojson文件或服务url地址
         data: option.data, //geojson格式规范数据对象，与url二选一即可。
         mask: option.mask || false, // 标识是否绘制区域边界的反选遮罩层
@@ -119,17 +119,23 @@ export default class MeasureUnit {
   addPolylinePrimitive(option: any) {
     const graphic = new mars3d.graphic.PolylinePrimitive({
       positions: option.positions,
-      style: {
-        width: option?.width ?? 3,
-
-        color: option.color,
-        opacity: option?.opc ?? 1,
-        distanceDisplayCondition: option?.di ?? false, //是否按视距显示
-        distanceDisplayCondition_far: option?.diFar ?? Number.MAX_VALUE, //最大距离
-        distanceDisplayCondition_near: option?.diNear ?? 0, //最小距离
-        clampToGround: option.clamp ?? true,
-        label: option?.label ? this.addLabel(option.label) : {},
-      },
+      style: option.style
+        ? {
+            ...option.style,
+            distanceDisplayCondition: option?.di ?? true, //是否按视距显示
+            distanceDisplayCondition_far: option?.diFar ?? 200000, //最大距离
+            distanceDisplayCondition_near: option?.diNear ?? 0, //最小距离
+          }
+        : {
+            width: option?.width ?? 3,
+            color: option.color,
+            opacity: option?.opc ?? 1,
+            distanceDisplayCondition: option?.di ?? false, //是否按视距显示
+            distanceDisplayCondition_far: option?.diFar ?? Number.MAX_VALUE, //最大距离
+            distanceDisplayCondition_near: option?.diNear ?? 0, //最小距离
+            clampToGround: option.clamp ?? true,
+            label: option?.label ? this.addLabel(option.label) : {},
+          },
       flyTo: option?.flyTo ?? false,
     });
     this.polyline.push(graphic);
@@ -172,7 +178,7 @@ export default class MeasureUnit {
   deleteFn() {
     if (this.geoJsonLayer.length > 0) {
       this.geoJsonLayer.forEach((i) => {
-        if(i.name !== "LHSBJX") {
+        if (i.name !== "LHSBJX") {
           i.clear();
           this.map3d.removeLayer(i, true);
         }

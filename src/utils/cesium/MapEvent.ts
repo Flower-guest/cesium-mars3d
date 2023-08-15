@@ -1,4 +1,5 @@
-import * as Cesium from "mars3d-cesium";
+import * as Cesium from "cesium";
+// import * as Cesium from "mars3d-cesium";
 import * as mars3d from "mars3d";
 import { cartesianToGeographic } from "./mapTools";
 class MapEvent {
@@ -121,21 +122,41 @@ class MapEvent {
     });
   }
   // 只执行一次的点击事件
+  // getCartographic(ck) {
+  //   const viewer = this.viewer;
+  //   // const that = this;
+  //   viewer.once(mars3d.EventType.leftDown, function (e) {
+  //     const pick = viewer.scene.pick(e.position);
+  //     const cartographic = mars3d.LngLatPoint.fromCartesian(e.cartesian); //弧度 由经度，纬度和高度定义的位置
+  //     ck(cartographic, pick);
+  //   });
+
+  //   //off移除事件
+  //   viewer.once(mars3d.EventType.rightClick, function () {
+  //     viewer.off(mars3d.EventType.leftDown);
+  //     ck();
+  //     // that.addClick(""); //添加点击事件 避免事件被删除
+  //   });
+  // }
+  // 只执行一次的点击事件
   getCartographic(ck) {
     const viewer = this.viewer;
-    const that = this;
-    viewer.once(mars3d.EventType.leftDown, function (e) {
+    const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+    handler.setInputAction(function onLeftClick(e) {
       const pick = viewer.scene.pick(e.position);
-      const cartographic = mars3d.LngLatPoint.fromCartesian(e.cartesian); //弧度 由经度，纬度和高度定义的位置
-      ck(cartographic, pick);
-    });
-
-    //off移除事件
-    viewer.once(mars3d.EventType.rightClick, function () {
-      viewer.off(mars3d.EventType.leftDown);
+      const cartesian = viewer.scene.pickPosition(e.position); //返回根据深度缓冲区和窗口位置重构的笛卡尔位置。
+      const cartographic = cartesianToGeographic(cartesian); //弧度 由经度，纬度和高度定义的位置
+      handler.setInputAction(() => {
+        //为viewer绑定LEFT_UP事件监听器（执行函数，监听的事件）
+        handler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_UP); // 解除viewer的LEFT_UP事件监听器
+        handler.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_DOWN); // 解除viewer的LEFT_DOWN事件监听器
+        ck(cartographic, pick);
+      }, Cesium.ScreenSpaceEventType.LEFT_UP);
+    }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+    handler.setInputAction(function () {
+      handler.destroy();
       ck();
-      that.addClick(""); //添加点击事件 避免事件被删除
-    });
+    }, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
   }
 }
 

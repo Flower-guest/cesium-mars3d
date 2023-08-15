@@ -118,7 +118,7 @@ const toPageUrl = ref<string>();
 watch(
   () => props.tableInfo,
   (newValue) => {
-    if (newValue.type == "lhs" || newValue.type == "xzzc") {
+    if (newValue.type == "lhs" || newValue.type == "xz") {
       // billboard点击事件
       tableInfo3.value = newValue;
       toPageUrl.value =

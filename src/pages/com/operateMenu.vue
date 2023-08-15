@@ -14,6 +14,7 @@
 </template>
 
 <script setup lang="ts">
+import { ElMessage } from "element-plus";
 import LocalCache from "@/utils/cache";
 import { dJSON } from "@/utils/cesium/config/cesiumConfig";
 const activeBtn = ref<any>(); //当前点击的按钮
@@ -37,11 +38,13 @@ const changeViews = (val) => {
   switch (val.eventType) {
     case "showAll":
       mars3dAdd.deleteFn();
-      // addScene.tempCollectionRemove();
       addScene.showBillboard(val.menuType, props.toolMenu);
-      addScene.changeViews("LHS");
-      addLinePrimitive(props.toolMenu[1]);
-      console.log("showAll");
+      props.toolMenu.forEach((i) => {
+        if (i.eventType == "geojson") {
+          addLinePrimitive(i);
+        }
+      });
+      addScene.changeViews(val.changeName);
       break;
     case "measure":
       measure.measureStart(val.menuType, () => {
@@ -51,13 +54,13 @@ const changeViews = (val) => {
     case "marker":
       addScene.showBillboard(val.menuType); //显示指定类型的marker点
       val.changeName && addScene.changeViews(val.changeName); //跳转至点视角
-      mars3dAdd.deleteFn(); //删除线更面
-      // addScene.tempCollectionRemove(); //删除
-      console.log("marker");
+      mars3dAdd.deleteFn(); //删除线、面
       break;
     case "addMarker":
+      const markerType = val.addMarkerType;
+      const img = markerType == "afd" ? "mk_jk.png" : "mk_fz.png";
       //添加资产
-      if (val.menuType == "xzzc") {
+      if (val.menuType == "xz") {
         LocalCache.setCache("glType", "add");
         mapEvent.getCartographic((val) => {
           if (val) {
@@ -65,41 +68,47 @@ const changeViews = (val) => {
               val.lng,
               val.lat,
               val.alt,
-              "mk_zs.png",
+              img,
               "",
               "rgba(0,250,154,0.5)",
               {
-                type: "xzzc",
-                url: "mk_fz.png",
+                type: "xz",
+                addMarkerType: markerType,
+                url: img,
                 isClick: true,
                 eventType: "showTable",
               },
               true,
               50,
-              90
+              60
             );
           }
           activeBtn.value = "";
         });
-      } else if (val.menuType == "sczc") {
+      } else if (val.menuType == "sc") {
         //删除资产
         LocalCache.setCache("glType", "delete");
-        mapEvent.getCartographic((...val) => {
-          const type = val[1]?.id?.properties?.info?._value?.type || null;
-          if (type == "xzzc") {
+        mapEvent.getCartographic((...val: any[]) => {
+          const type =
+            val[1]?.id?.properties?.info?._value?.addMarkerType || null;
+          if (type == markerType) {
             let markerInfo = LocalCache.getCache("markerInfo") || [];
             if (markerInfo.length > 0) {
               markerInfo = markerInfo.filter((i) => i.id !== val[1].id.id);
               LocalCache.setCache("markerInfo", markerInfo);
             }
             addScene.removeBillboard(val[1].id);
+          } else {
+            ElMessage.error("删除失败");
           }
           activeBtn.value = "";
           LocalCache.setCache("glType", "");
         });
-      } else {
+      } else if (val.menuType == "bj") {
         LocalCache.setCache("glType", "edit");
         activeBtn.value = 0;
+      } else {
+        console.log("ss");
       }
       break;
     case "geojson":

@@ -32,6 +32,10 @@
           class="w-16px h-17px mr-8px"
           :src="getAssets(activeBtn == i.active ? i.img2 : i.img1)"
         /> -->
+        <img
+          class="w-16px h-17px mr-8px"
+          :src="getAssets('mj.png')"
+        />
         {{ i.btnName }}
       </div>
       <!-- 场景切换选项 -->
