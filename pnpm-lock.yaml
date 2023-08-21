@@ -53,7 +53,7 @@ specifiers:
   vue-countup-v3: ^1.1.0
   vue-router: '4'
   vue-tsc: ^0.40.4
-  vue3-seamless-scroll: ^2.0.1
+  vue3-marquee: ^4.0.0
 
 dependencies:
   '@element-plus/icons-vue': 2.1.0_vue@3.2.40
@@ -80,7 +80,7 @@ dependencies:
   vue: registry.npmmirror.com/vue/3.2.40
   vue-countup-v3: 1.1.0_vue@3.2.40
   vue-router: registry.npmmirror.com/vue-router/4.1.5_vue@3.2.40
-  vue3-seamless-scroll: 2.0.1
+  vue3-marquee: 4.0.0_vue@3.2.40
 
 devDependencies:
   '@babel/core': registry.npmmirror.com/@babel/core/7.19.3
@@ -5284,11 +5284,6 @@ packages:
     resolution: {integrity: sha512-/DZ1XJqhbqRkCop6s9ZFu8JrFRwmVuHg4quIRm+ziFkR3N3ec6ck6yBvJ1GYeEQZhLVwRW0rZE+C3SSJpy0RTg==}
     dev: false
 
-  /throttle-debounce/5.0.0:
-    resolution: {integrity: sha512-2iQTSgkkc1Zyk0MeVrt/3BvuOXYPl/R8Z0U2xxo9rjwNciaHDG3R+Lm6dh4EeUci49DanvBnuqI6jshoQQRGEg==}
-    engines: {node: '>=12.22'}
-    dev: false
-
   /through/2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
 
@@ -5579,10 +5574,13 @@ packages:
     dependencies:
       vue: registry.npmmirror.com/vue/3.2.40
 
-  /vue3-seamless-scroll/2.0.1:
-    resolution: {integrity: sha512-mI3BaDU3pjcPUhVSw3/xNKdfPBDABTi/OdZaZqKysx4cSdNfGRbVvGNDzzptBbJ5S7imv5T55l6x/SqgnxKreg==}
+  /vue3-marquee/4.0.0_vue@3.2.40:
+    resolution: {integrity: sha512-/CPyAi0TQM2Cdcf8PBT/A7uXRVHHncN3MyKRcFBqkj5ph2tlVk08D5K6fyY2S5tYscgLJc3ma2vhPTrrkZih1A==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      vue: ^3.2
     dependencies:
-      throttle-debounce: 5.0.0
+      vue: registry.npmmirror.com/vue/3.2.40
     dev: false
 
   /which/1.3.1:

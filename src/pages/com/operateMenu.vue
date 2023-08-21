@@ -1,9 +1,33 @@
 <template>
   <!-- 场景切换选项 -->
   <div class="menuBox">
-    <template v-for="i in props.toolMenu" :key="i.name">
+    <template v-if="props.chooseType == 'checkbox'">
+      <div class="checkbox">
+        <el-checkbox
+          v-model="checkAll"
+          :indeterminate="isIndeterminate"
+          @change="handleCheckAllChange"
+          >全部场景</el-checkbox
+        >
+        <el-checkbox-group
+          v-model="checkedCities"
+          @change="handleCheckedCitiesChange"
+        >
+          <el-checkbox
+            v-for="(i, idx) in props.toolMenu"
+            :key="i.name"
+            :label="i.menuType"
+            v-show="idx !== 0"
+            >{{ i.name }}</el-checkbox
+          >
+        </el-checkbox-group>
+      </div>
+    </template>
+    <template v-else>
       <div
-        class="menu"
+        v-for="i in props.toolMenu"
+        :key="i.name"
+        class="raido"
         :class="{ activeText: activeBtn == i.menuType ? true : false }"
         @click="changeViews(i)"
       >
@@ -21,8 +45,15 @@ const activeBtn = ref<any>(); //当前点击的按钮
 
 interface detailProps {
   toolMenu: any;
+  chooseType: string;
 }
-const props = defineProps<detailProps>();
+const props = withDefaults(defineProps<detailProps>(), {
+ chooseType: "raido",
+});
+const checkAll = ref<boolean>(false);
+const isIndeterminate = ref<boolean>(true);
+const checkedCities = ref<any[]>([]);
+const cities: any = [];
 
 let mars3dAdd: any, measure: any, addScene: any, mapEvent: any, drawUnit: any; //用来存储上一次点击的name值
 // 初始化数据
@@ -32,6 +63,14 @@ const initData = () => {
   addScene = window.cesium.addScene;
   mapEvent = window.cesium.mapEvent;
   drawUnit = window.cesium.drawUnit;
+  props.toolMenu.forEach((i, idx) => {
+    if (idx > 0) {
+      checkedCities.value.push(i.menuType);
+      cities.push(i.menuType);
+    }
+  });
+  checkAll.value = true;
+  isIndeterminate.value = false;
 };
 const changeViews = (val) => {
   activeBtn.value = activeBtn.value == val.menuType ? "" : val.menuType;
@@ -139,30 +178,43 @@ const changeViews = (val) => {
 const addLinePrimitive = (val) => {
   const res: any = val.lineUrl;
   for (let i = 0; i < res.features.length; i++) {
-      const { properties, geometry } = res.features[i];
-      const option = properties?.style
-        ? { positions: geometry.coordinates, style: properties.style }
-        : {
-        positions: geometry.coordinates,
-        width: 8,
-        color: properties.color,
-        di: true,
-        diFar: 200000,
-        label: {
-          text: properties.name,
+    const { properties, geometry } = res.features[i];
+    const option = properties?.style
+      ? { positions: geometry.coordinates, style: properties.style }
+      : {
+          positions: geometry.coordinates,
+          width: 8,
           color: properties.color,
-          clamp: true,
-          fs: 18,
-          addHeight: 20,
-          vD: false,
-          bg: true,
           di: true,
           diFar: 200000,
-        },
-      };
-      mars3dAdd.addPolylinePrimitive(option);
-    }
+          label: {
+            text: properties.name,
+            color: properties.color,
+            clamp: true,
+            fs: 18,
+            addHeight: 20,
+            vD: false,
+            bg: true,
+            di: true,
+            diFar: 200000,
+          },
+        };
+    mars3dAdd.addPolylinePrimitive(option);
+  }
 };
+
+const handleCheckAllChange = (val: boolean) => {
+  checkedCities.value = val ? cities : [];
+  isIndeterminate.value = false;
+  changeViews(props.toolMenu[0]);
+};
+const handleCheckedCitiesChange = (value: string[]) => {
+  console.log(value);
+  const checkedCount = value.length;
+  checkAll.value = checkedCount === cities.length;
+  isIndeterminate.value = checkedCount > 0 && checkedCount < cities.length;
+};
+
 onMounted(() => {
   nextTick(() => {
     initData();
@@ -172,19 +224,68 @@ onMounted(() => {
 
 <style lang="less" scoped>
 .menuBox {
-  width: 100%;
+  margin-top: -24px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  .menu {
-    width: 80%;
+  box-sizing: border-box;
+  color: #dae5e6;
+  width: 164px;
+  padding: 14px 14px 8px;
+  background: url("../../assets/img/sugges-list-bg.png") no-repeat;
+  background-size: 100% 100%;
+  margin-bottom: 20px;
+  :deep(.checkbox) {
+    .el-checkbox-group {
+      margin-left: 13px;
+    }
+    .is-indeterminate {
+      background-color: transparent;
+      border-color: #13879c;
+    }
+    .el-checkbox__input.is-indeterminate .el-checkbox__inner::before {
+      background-color: #00ffff;
+    }
+    .el-checkbox {
+      color: #fff;
+      .el-checkbox__inner {
+        background-color: transparent;
+        border-color: #13879c;
+      }
+    }
+    .is-checked {
+      .el-checkbox__label {
+        color: #fff;
+      }
+      .el-checkbox__inner {
+        background-color: transparent;
+        border-color: #13879c;
+      }
+      .el-checkbox__inner::after {
+        border: 1px solid #00ffff;
+        border-left: 0;
+        border-top: 0;
+      }
+    }
+  }
+  .raido {
+    width: 100%;
     text-align: center;
     cursor: pointer;
-    background-color: rgba(40, 70, 93, 0.8);
-    border: 1px solid rgba(187, 187, 187, 0.6);
-    margin-bottom: 4px;
-    padding: 8px 6px;
-    font-size: 12px;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #fff;
+    position: relative;
+    &:hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 8px;
+      background: url(../../assets/img/icon_gy.png) no-repeat left center/100%
+        auto;
+    }
   }
   .activeText {
     color: #00ffff !important;

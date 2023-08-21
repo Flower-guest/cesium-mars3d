@@ -9,6 +9,7 @@ import LHSSTBHHXAreas from "@/assets/json/LHSSTBHHXAreas.json";
 import LHSTDLYGHAreas from "@/assets/json/LHSTDLYGHAreas.json";
 import LHSYJJBNTBHX from "@/assets/json/LHSYJJBNTBHX.json";
 import LHSJTZSLine from "@/assets/json/LHSJTZSLine.json";
+import point from "@/assets/json/point.json";
 import { gjtArr, markerArr } from "./markerConfig";
 // 加载cesium的domId
 export const CESIUM_ID = "cesiumContainer";
@@ -251,6 +252,12 @@ export const dTiles = [
 export const dLines = [
   {
     url: LHSJTZSLine,
+  },
+];
+// 加载点数据
+export const dPoint = [
+  {
+    url: point,
   },
 ];
 // 新增点位的回显与默认marker点位配置

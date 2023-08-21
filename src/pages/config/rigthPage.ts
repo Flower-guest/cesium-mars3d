@@ -1,72 +1,100 @@
 import LHSJTZSLine from "@/assets/json/LHSJTZSLine.json";
 
 export const btnTool = {
-  sp: [
-    // {
-    //   btnType: "jgqxw",
-
-    //   btnName: "景观千寻网",
-    //   active: "jgqxw",
-    // },
+  jj: [
     {
       btnType: "cjdl",
       btnName: "场景导览",
       active: "cjdl",
+      img: "icon-cjdl.png",
+      w: 25,
+      h: 24,
+      chooseType: "checkbox",
     },
     {
       btnType: "kjcl",
       btnName: "空间量测",
       active: "kjcl",
+      img: "icon_kjcl.png",
+      w: 23,
+      h: 24,
     },
     {
       btnType: "wzss",
       btnName: "位置搜索",
       active: "wzss",
+      img: "icon_wzss.png",
+      w: 24,
+      h: 27,
     },
   ],
-  zs: [
+  fz: [
     {
-      btnType: "kjgh",
-      btnName: "空间规划",
-      active: "kjgh",
+      btnType: "cygh",
+      btnName: "产业规划",
+      active: "cygh",
+      chooseType: "radio",
+      img: "icon_cygh.png",
+      w: 24,
+      h: 24,
     },
     {
       btnType: "tdgh",
       btnName: "土地规划",
       active: "tdgh",
+      chooseType: "radio",
+      img: "icon_tdgh.png",
+      w: 24,
+      h: 21,
     },
     {
       btnType: "zczs",
       btnName: "资产招商",
       active: "zczs",
+      chooseType: "checkbox",
+      img: "icon_zczs.png",
+      w: 26,
+      h: 28,
     },
     {
-      btnType: "tscy",
-      btnName: "特色产业",
-      active: "tscy",
+      btnType: "cyzs",
+      btnName: "产业招商",
+      active: "cyzs",
+      chooseType: "checkbox",
+      img: "icon_cyzs.png",
+      w: 26,
+      h: 24,
     },
   ],
   zl: [
     {
-      btnType: "gldt",
-      btnName: "管理地图",
-      active: "gldt",
+      btnType: "zldt",
+      btnName: "治理地图",
+      active: "zldt",
+      chooseType: "checkbox",
+      img: "icon_zldt.png",
+      w: 23,
+      h: 24,
     },
     {
       btnType: "zcdt",
       btnName: "资产地图",
       active: "zcdt",
+      chooseType: "checkbox",
+      img: "icon_zcdt.png",
+      w: 22,
+      h: 21,
     },
-    {
-      btnType: "zcgl",
-      btnName: "资产管理",
-      active: "zcgl",
-    },
-    {
-      btnType: "afgl",
-      btnName: "安防管理",
-      active: "afgl",
-    },
+    // {
+    //   btnType: "zcgl",
+    //   btnName: "资产管理",
+    //   active: "zcgl",
+    // },
+    // {
+    //   btnType: "afgl",
+    //   btnName: "安防管理",
+    //   active: "afgl",
+    // },
   ],
 };
 
@@ -116,12 +144,12 @@ export const toolMenu = {
       eventType: "marker",
       changeName: "LHS",
     },
-    {
-      name: "全景点位",
-      menuType: "qjdw",
-      eventType: "marker",
-      changeName: "LHS",
-    },
+    // {
+    //   name: "全景点位",
+    //   menuType: "qjdw",
+    //   eventType: "marker",
+    //   changeName: "LHS",
+    // },
   ],
   kjcl: [
     {
@@ -145,16 +173,16 @@ export const toolMenu = {
       eventType: "measure",
     },
   ],
-  kjgh: [
+  cygh: [
     {
-      name: "qygh",
+      name: "企业规划",
       menuType: "qygh",
       eventType: "geojson",
       changeName: "LHS",
       geoType: "polygonLine",
     },
     {
-      name: "jtgh",
+      name: "交通规划",
       menuType: "jtgh",
       eventType: "geojson",
       changeName: "LHS",
@@ -238,7 +266,7 @@ export const toolMenu = {
       eventType: "marker",
     },
   ],
-  tscy: [
+  cyzs: [
     {
       name: "粮油产业",
       menuType: "lycy",
@@ -280,34 +308,34 @@ export const toolMenu = {
       eventType: "marker",
     },
   ],
-  gldt: [],
-  zcdt: [
+  zldt: [
     {
-      name: "全部",
+      name: "全部点位",
       menuType: "qb",
       eventType: "marker",
     },
     {
-      name: "房屋资产",
-      menuType: "fwzc",
+      name: "网格划分",
+      menuType: "wghf",
       eventType: "marker",
     },
     {
-      name: "山林资产",
-      menuType: "slzc",
+      name: "视频监控",
+      menuType: "spjk",
       eventType: "marker",
     },
     {
-      name: "水塘资产",
-      menuType: "stzc",
+      name: "重点人群",
+      menuType: "zdrq",
       eventType: "marker",
     },
     {
-      name: "田地资产",
-      menuType: "tdzc",
+      name: "危险源点位",
+      menuType: "wxydw",
       eventType: "marker",
     },
   ],
+  zcdt: [],
   zcgl: [
     {
       name: "资产查询",

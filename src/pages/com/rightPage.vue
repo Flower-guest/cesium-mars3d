@@ -5,16 +5,24 @@
       @input="onSearch"
       v-model="searchVal"
       placeholder="请输入需要搜索的地址"
-      :suffix-icon="Search"
-    />
+    >
+      <template #suffix>
+        <el-button color="#2192A6" type="primary" round
+          ><img
+            class="w-16px h-16px mr-8px"
+            :src="getAssets('icon_ss.png')"
+          />搜索</el-button
+        >
+      </template>
+    </el-input>
     <div v-show="suggestionList.length > 0" class="list">
       <template v-for="i in suggestionList" :key="i.id">
         <div
-          class="flex flex-wrap justify-between items-center bg-#fff py-15px px-5px cursor-pointer"
+          class="flex flex-wrap justify-between items-center text-[#fff] py-15px px-5px cursor-pointer"
           @click="setSuggestion(i)"
         >
           <span class="text-14px mr-5px">{{ i.title }}</span>
-          <span class="text-12px text-#666">{{ i.address }}</span>
+          <span class="text-12px">{{ i.address }}</span>
         </div>
       </template>
     </div>
@@ -22,35 +30,43 @@
   <!-- 划线功能按钮 -->
   <div class="draw_tool">
     <template v-for="i in btnTool[topClickType]" :key="i.active">
-      <div
-        class="tool_list"
-        :class="{ activeText: activeBtn == i.active ? true : false }"
-        @click="toolClick(i)"
-      >
-        <!-- <img
-          v-if="i?.img1"
-          class="w-16px h-17px mr-8px"
-          :src="getAssets(activeBtn == i.active ? i.img2 : i.img1)"
-        /> -->
+      <div class="tool_list" @click="toolClick(i)">
         <img
-          class="w-16px h-17px mr-8px"
-          :src="getAssets('mj.png')"
+          class="ml-8px"
+          :style="{ width: i.w + 'px', height: i.h + 'px' }"
+          :src="getAssets(i.img)"
         />
-        {{ i.btnName }}
+        <span class="text-18px">{{ i.btnName }}</span>
+        <img
+          class="w-14px h-10px"
+          :style="{
+            width:activeBtn == i.active ? '14px' : '10px',
+            height:activeBtn == i.active ? '10px' : '14px',
+          opacity: isShowXL(toolMenu[i.btnType]) ? 1 : 0 }"
+          :src="
+            getAssets(activeBtn == i.active ? 'icon_xl1.png' : 'icon_xl2.png')
+          "
+        />
       </div>
       <!-- 场景切换选项 -->
-      <OperateMenu
-        v-show="activeBtn == i.active"
-        :tool-menu="toolMenu[i.btnType]"
-      />
+      <template v-if="isShowXL(toolMenu[i.btnType])">
+        <OperateMenu
+          v-show="activeBtn == i.active"
+          :choose-type="i?.chooseType"
+          :tool-menu="toolMenu[i.btnType]"
+        />
+      </template>
     </template>
   </div>
   <!-- 全景与卫星切换 -->
   <div class="vr cursor-pointer">
     <div
-      class="relative w-140px h-100% mr-12px"
+      class="relative w-168x h-100%"
       @click="showMarker({ billboardType: 3 })"
     >
+      <div class="qjdw">
+        <img :src="getAssets('icon-qjdw.png')" />
+      </div>
       <img class="w-100% h-100%" :src="getAssets('qj.png')" />
       <div class="dt bg-#1F8AAA">全景</div>
     </div>
@@ -67,7 +83,6 @@ import { btnTool, toolMenu } from "../config/rigthPage";
 import getAssets from "@/utils/getAssets";
 import Coordtransform from "@/utils/cesium/Coordtransform";
 import { debounce } from "@/utils/throttle";
-import { Search } from "@element-plus/icons-vue";
 import { useTopTypeStore } from "@/store";
 
 const TMap = (window as any).TMap;
@@ -88,15 +103,21 @@ watch(
     topClickType.value = newVal;
   }
 );
+const isShowXL = computed(() => (item: any) => {
+  //计算属性传递参数
+  return item ? true : false;
+});
 
-
-const emit = defineEmits(["showMarker", "addPoly"]);
+const emit = defineEmits(["showMarker"]);
 
 // tool点击功能 hasLength:是否需要展示长度
 const toolClick = (i) => {
   addScene = window.cesium.addScene;
   activeBtn.value = activeBtn.value == i.active ? "" : i.active;
   switch (i.btnType) {
+    case "qjdw":
+      console.log("qjdw");
+      break;
     case "wzss":
       showView.value = false;
       isShowSearch.value = !isShowSearch.value;
@@ -155,24 +176,33 @@ defineExpose({
 </script>
 
 <style lang="less" scoped>
-.activeBtn {
-  background: rgb(120, 189, 61) !important;
-}
-
 .activeText {
   color: #00ffff !important;
 }
 
 .vr {
   position: absolute;
-  height: 90px;
+  height: 124px;
   right: 130px;
   bottom: 56px;
   border-radius: 4px;
-  overflow: hidden;
-  z-index: 1;
   display: flex;
 
+  .qjdw {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.3);
+    img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 33px;
+      height: 24px;
+    }
+  }
   .dt {
     position: absolute;
     box-sizing: border-box;
@@ -188,18 +218,30 @@ defineExpose({
 .search {
   position: absolute;
   left: 50%;
-  top: 132px;
+  top: 112px;
   z-index: 1;
-  height: 45px;
-  min-width: 200px;
+  height: 47px;
+  width: 480px;
   transform: translate(-50%, 0px);
-  .el-input {
+  :deep(.el-input) {
+    width: 100%;
     height: 45px;
+    .el-input__wrapper {
+      background: #0d2124;
+      box-shadow: inset 0px 0px 5px -1px #92efff;
+      border-radius: 8px;
+      padding-left: 20px;
+      .el-input__inner {
+        color: #7ac0cc;
+      }
+      .el-input__inner::placeholder {
+        color: #7ac0cc;
+      }
+    }
   }
 }
 .draw_tool {
   position: absolute;
-  width: 140px;
   right: 28px;
   top: 132px;
   z-index: 1;
@@ -210,16 +252,22 @@ defineExpose({
   color: #fff;
 
   .tool_list {
+    height: 51px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    font-size: 14px;
-    width: 100%;
-    margin-bottom: 8px;
-    padding: 8px 0;
+    width: 164px;
+    margin-bottom: 21px;
+    padding: 11px 11px 9px 8px;
+    box-sizing: border-box;
     cursor: pointer;
-    background-color: rgba(40, 70, 93, 0.8);
-    border: 1px solid rgba(187, 187, 187, 0.6);
+    background: url("../../assets/img/btn-bg.png") no-repeat;
+    background-size: 100% 100%;
+    font-family: "USTitleBlack";
   }
+}
+.list {
+  background: url("../../assets/img/sugges-list-bg.png") no-repeat;
+  background-size: 100% 100%;
 }
 </style>

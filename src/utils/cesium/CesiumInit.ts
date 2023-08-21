@@ -13,6 +13,7 @@ import {
   dJSON,
   dTiles,
   dLines,
+  dPoint,
   billboard,
   CESIUM_ID,
 } from "./config/cesiumConfig";
@@ -122,6 +123,9 @@ class CesiumInit {
     for (let i = 0; i < dLines.length; i++) {
       this.addLine(dLines[i].url);
     }
+    for (let i = 0; i < dPoint.length; i++) {
+      this.addPoint(dPoint[i].url);
+    }
     // 加载图层
     // this.mars3dAdd.addXyzLayer({
     //   url:
@@ -137,24 +141,31 @@ class CesiumInit {
       const option = properties?.style
         ? { positions: geometry.coordinates, style: properties.style }
         : {
-        positions: geometry.coordinates,
-        width: 8,
-        color: properties.color,
-        di: true,
-        diFar: 200000,
-        label: {
-          text: properties.name,
-          color: properties.color,
-          clamp: true,
-          fs: 18,
-          addHeight: 20,
-          vD: false,
-          bg: true,
-          di: true,
-          diFar: 200000,
-        },
-      };
+            positions: geometry.coordinates,
+            width: 8,
+            color: properties.color,
+            di: true,
+            diFar: 200000,
+            label: {
+              text: properties.name,
+              color: properties.color,
+              clamp: true,
+              fs: 18,
+              addHeight: 20,
+              vD: false,
+              bg: true,
+              di: true,
+              diFar: 200000,
+            },
+          };
       this.mars3dAdd.addPolylinePrimitive(option);
+    }
+  }
+  addPoint(res) {
+    for (let i = 0; i < res.features.length; i++) {
+      const { properties, geometry } = res.features[i];
+      const option =  { positions: geometry.coordinates, style: properties.style };
+      this.mars3dAdd.addPoint(option);
     }
   }
 }

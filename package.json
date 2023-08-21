@@ -38,7 +38,7 @@
     "vue": "^3.2.37",
     "vue-countup-v3": "^1.1.0",
     "vue-router": "4",
-    "vue3-seamless-scroll": "^2.0.1"
+    "vue3-marquee": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",

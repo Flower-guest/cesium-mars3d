@@ -3,9 +3,11 @@ import App from "./App.vue";
 import route from "./router";
 import pinia from "./store";
 import pluginMain from "./plugins";
-import vue3SeamlessScroll from "vue3-seamless-scroll";
 import MarsUIInstall from "./components/marsUI";
 
+import Vue3Marquee from "vue3-marquee";
+
+import "@/assets/font/font.css";
 import "virtual:uno.css";
 import "normalize.css/normalize.css";
 
@@ -31,4 +33,5 @@ MarsUIInstall(app, {
     warpper: "#mars-main-view",
   },
 });
-app.use(vue3SeamlessScroll).use(route).use(pinia).mount("#app");
+
+app.use(Vue3Marquee).use(route).use(pinia).mount("#app");

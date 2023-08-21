@@ -8,6 +8,7 @@ export default class MeasureUnit {
   tileLayer: any;
   polyline: any;
   polylinePrimitive: any;
+  point: any;
 
   constructor(map3d) {
     this.map3d = map3d;
@@ -15,6 +16,8 @@ export default class MeasureUnit {
     this.polylinePrimitive = new mars3d.layer.GraphicLayer();
     this.polyline = [];
     this.map3d.addLayer(this.polylinePrimitive);
+    this.point = new mars3d.layer.GraphicLayer();
+    this.map3d.addLayer(this.point);
   }
   // mars3d添加GeoJsonLayer
   addGeoJsonLayer(option: any) {
@@ -173,6 +176,15 @@ export default class MeasureUnit {
       visibleDepth: option?.vD ?? true, //是否被遮挡
       addHeight: option?.addHeight ?? 0, //在现有坐标基础上增加的高度值
     };
+  }
+  // 添加点
+  addPoint(option: any) {
+    const graphic = new mars3d.graphic.PointPrimitive({
+      position: option.position,
+      style: option.style,
+    });
+    console.log(graphic);
+    this.point.addGraphic(graphic);
   }
   // 删除元素
   deleteFn() {

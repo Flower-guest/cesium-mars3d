@@ -5,11 +5,7 @@
     <!-- 顶部页面 -->
     <TopPage />
     <!-- 右边页面 -->
-    <RightPage
-      @show-marker="showMarker"
-      @add-poly="addPoly"
-      ref="rightPage"
-    />
+    <RightPage @show-marker="showMarker" ref="rightPage" />
     <!-- 表单弹窗 -->
     <TableInfo
       :table-info="tableInfo"
@@ -31,10 +27,13 @@
     />
     <!-- 底部经纬度信息 -->
     <div class="location">
-      <img
+      <!-- <img
         class="h-30px w-130px mr-10px"
         src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
-      />
+      /> -->
+      <div class="h-30px w-300px leading-30px bg-[#000] text-[#707070] text-16px px-34px">
+        浙江元数科技有限公司
+      </div>
       <div v-show="cartesian3">
         经度：{{ cartesian3?.lng }} 纬度：{{ cartesian3?.lat }} 海拔：{{
           cartesian3?.h
@@ -52,7 +51,7 @@ import BillboardInfo from "./com/billboardInfo.vue";
 import CesiumInit from "@/utils/cesium/CesiumInit";
 import LocalCache from "@/utils/cache";
 
-const toPageUrl = ref<string>(
+const toPageUrl = ref<any>(
   "https://www.jgqxw.com/index/tour/show/vid/23cc2027da9f65f6"
 ); //跳转全景默认地址
 const showTable = ref<boolean>(false); //是否展示表单
@@ -65,11 +64,12 @@ const showBillboard = ref<boolean>(false); //是否展示billboard表单
 const cartesian3 = ref<any>(); //点击目标位置x、y、z坐标值
 const rightPage = ref<any>();
 
-let cesium, measure, mapEvent, addScene;
+let cesium, mapEvent, addScene;
+// , measure;
 // 初始化cesium
 const initCesium = async () => {
   cesium = window.cesium = new CesiumInit();
-  measure = cesium.measure; //划线功能对象
+  // measure = cesium.measure; //划线功能对象
   addScene = cesium.addScene; //添加场景对象
   mapEvent = cesium.mapEvent; //cesium事件对象
   // 添加点击事件回调函数
@@ -79,16 +79,16 @@ const initCesium = async () => {
   // 在每一帧渲染完成后，监测一个物体在屏幕中的位置是否发生变化
   mapEvent.scenePostRender((position) => changeBillboardPos(position));
 };
-// 添加绘制
-const addPoly = (val, hasLength) => {
-  isPoly.value = val == "clearAllDrawn" ? false : true;
-  measure.draw(val, hasLength, overDraw);
-};
+// // 添加绘制
+// const addPoly = (val, hasLength) => {
+//   isPoly.value = val == "clearAllDrawn" ? false : true;
+//   measure.draw(val, hasLength, overDraw);
+// };
 // 结束绘制
-const overDraw = () => {
-  isPoly.value = false;
-  rightPage.value.activeBtn = 0;
-};
+// const overDraw = () => {
+//   isPoly.value = false;
+//   rightPage.value.activeBtn = 0;
+// };
 // 展示与隐藏marker val:1:房屋信息 2:招商信息 3:全景按钮
 const showMarker = (val) => {
   if (val !== 3) {
@@ -169,7 +169,6 @@ onMounted(() => {
   left: 0;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.3);
-  padding: 0 20px;
   box-sizing: border-box;
   display: flex;
   align-items: center;

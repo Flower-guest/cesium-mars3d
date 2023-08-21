@@ -1,0 +1,193 @@
+{
+  "type": "FeatureCollection",
+  "layer": { "id": "m-920c4e88-2947-47df-bc22-56184a306574" },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "",
+        "id": "m-fe2080d4-1ae7-4e3c-ae5d-cc2145fd49e4",
+        "type": "point",
+        "style": {
+          "color": "rgba(0,255,255,0)",
+          "pixelSize": 20,
+          "outlineColor": "#ffffff",
+          "outlineWidth": 3,
+          "outline": true,
+          "scaleByDistance": false,
+          "clampToGround": true,
+          "distanceDisplayCondition": false,
+          "scaleByDistance_far": 500,
+          "scaleByDistance_near": 0,
+          "label": {
+            "text": "红桥地铁站",
+            "font_size": 15,
+            "color": "rgba(0,0,0,1)",
+            "outline": false,
+            "outlineColor": "#000000",
+            "pixelOffsetY": -30,
+            "font_family": "微软雅黑",
+            "background": true,
+            "backgroundColor": "rgba(255,255,255,0.8)",
+            "scaleByDistance": true,
+            "backgroundPadding": 5,
+            "clampToGround": true
+          }
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.903631, 28.062824, 42.8]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "",
+        "id": "m-a17ad800-d4ab-4a97-9eaa-035ab8044e6b",
+        "type": "point",
+        "style": {
+          "color": "rgba(255,255,255,0)",
+          "pixelSize": 20,
+          "outlineColor": "#ffffff",
+          "outlineWidth": 3,
+          "clampToGround": true,
+          "scaleByDistance": true,
+          "label": {
+            "text": "坪塘地铁站",
+            "font_size": 15,
+            "color": "rgba(0,0,0,1)",
+            "outline": false,
+            "outlineColor": "#000000",
+            "pixelOffsetY": -30,
+            "background": true,
+            "backgroundColor": "rgba(255,255,255,0.8)",
+            "scaleByDistance": true,
+            "clampToGround": true
+          }
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.906912, 28.046648, 25]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "",
+        "id": "m-fc0dcb32-25c6-41d6-a5a0-c9e1dd48bb15",
+        "type": "point",
+        "style": {
+          "color": "rgba(255,255,255,0)",
+          "pixelSize": 20,
+          "outlineColor": "rgba(255,255,255,0.4)",
+          "outlineWidth": 4,
+          "scaleByDistance": true,
+          "label": {
+            "text": "双湖站",
+            "font_size": 20,
+            "color": "#ffffff",
+            "outline": true,
+            "outlineColor": "#000000",
+            "pixelOffsetY": -30,
+            "scaleByDistance": true
+          }
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.92223, 28.029866, 30.8]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "",
+        "id": "m-098ab3af-4392-4fe7-b154-58ffe7a69d8f",
+        "type": "point",
+        "style": {
+          "color": "rgba(0,255,255,0)",
+          "pixelSize": 20,
+          "outlineColor": "rgba(255,255,255,0.4)",
+          "outlineWidth": 4,
+          "scaleByDistance": true,
+          "label": {
+            "text": "桐溪站",
+            "font_size": 15,
+            "color": "#ffffff",
+            "outline": true,
+            "outlineColor": "#000000",
+            "pixelOffsetY": -30,
+            "scaleByDistance": true
+          }
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.90493, 28.084783, 42.7]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "",
+        "id": "m-a9c8df8f-0385-4572-a294-7f662cfdc8ee",
+        "type": "point",
+        "style": {
+          "color": "rgba(0,255,255,0)",
+          "pixelSize": 6,
+          "outlineColor": "#ffffff",
+          "outlineWidth": 2,
+          "outline": false,
+          "label": {
+            "text": "巴溪洲湿地",
+            "font_size": 15,
+            "color": "rgba(0,0,0,1)",
+            "outline": false,
+            "outlineColor": "#000000",
+            "pixelOffsetY": -20,
+            "background": true,
+            "backgroundColor": "rgba(255,255,255,0.8)",
+            "scaleByDistance": true
+          }
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.919396, 28.068694, 20.2]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "",
+        "id": "m-a53790dd-3205-4994-9a29-98406675234e",
+        "type": "point",
+        "style": {
+          "color": "rgba(0,255,255,0)",
+          "pixelSize": 6,
+          "outlineColor": "#ffffff",
+          "outlineWidth": 2,
+          "outline": false,
+          "scaleByDistance": true,
+          "label": {
+            "text": "湘江风光带",
+            "font_size": 15,
+            "color": "rgba(0,0,0,1)",
+            "outline": false,
+            "outlineColor": "#000000",
+            "pixelOffsetY": -20,
+            "background": true,
+            "backgroundColor": "rgba(255,255,255,0.8)",
+            "scaleByDistance": true
+          }
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.925027, 28.046689, 18]
+      }
+    }
+  ]
+}
