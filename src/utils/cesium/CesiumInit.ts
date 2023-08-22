@@ -138,33 +138,41 @@ class CesiumInit {
   addLine(res) {
     for (let i = 0; i < res.features.length; i++) {
       const { properties, geometry } = res.features[i];
-      const option = properties?.style
-        ? { positions: geometry.coordinates, style: properties.style }
-        : {
-            positions: geometry.coordinates,
-            width: 8,
-            color: properties.color,
-            di: true,
-            diFar: 200000,
-            label: {
-              text: properties.name,
+      if (geometry.type !== "Polygon") {
+        const option = properties?.style
+          ? { positions: geometry.coordinates, style: properties.style }
+          : {
+              positions: geometry.coordinates,
+              width: 8,
               color: properties.color,
-              clamp: true,
-              fs: 18,
-              addHeight: 20,
-              vD: false,
-              bg: true,
               di: true,
               diFar: 200000,
-            },
-          };
-      this.mars3dAdd.addPolylinePrimitive(option);
+              label: {
+                text: properties.name,
+                color: properties.color,
+                clamp: true,
+                fs: 18,
+                addHeight: 20,
+                vD: false,
+                bg: true,
+                di: true,
+                diFar: 200000,
+              },
+            };
+        this.mars3dAdd.addPolylinePrimitive(option);
+      } else {
+        const option = { positions: geometry.coordinates, style: properties.style }
+        this.mars3dAdd.addPolygonPrimitive(option);
+      }
     }
   }
   addPoint(res) {
     for (let i = 0; i < res.features.length; i++) {
       const { properties, geometry } = res.features[i];
-      const option =  { positions: geometry.coordinates, style: properties.style };
+      const option = {
+        positions: geometry.coordinates,
+        style: properties.style,
+      };
       this.mars3dAdd.addPoint(option);
     }
   }

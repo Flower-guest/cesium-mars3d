@@ -30,36 +30,28 @@ export const btnTool = {
   ],
   fz: [
     {
-      btnType: "cygh",
-      btnName: "产业规划",
-      active: "cygh",
-      chooseType: "radio",
-      img: "icon_cygh.png",
-      w: 24,
-      h: 24,
-    },
-    {
-      btnType: "tdgh",
-      btnName: "土地规划",
-      active: "tdgh",
+      btnType: "xcgh",
+      btnName: "乡村规划",
+      active: "xcgh",
       chooseType: "radio",
       img: "icon_tdgh.png",
       w: 24,
       h: 21,
     },
     {
-      btnType: "zczs",
-      btnName: "资产招商",
-      active: "zczs",
+      btnType: "zcxm",
+      btnName: "招商项目",
+      active: "zcxm",
       chooseType: "checkbox",
       img: "icon_zczs.png",
       w: 26,
       h: 28,
+      manyClass: true,
     },
     {
-      btnType: "cyzs",
-      btnName: "产业招商",
-      active: "cyzs",
+      btnType: "zszc",
+      btnName: "招商资产",
+      active: "zszc",
       chooseType: "checkbox",
       img: "icon_cyzs.png",
       w: 26,
@@ -84,17 +76,8 @@ export const btnTool = {
       img: "icon_zcdt.png",
       w: 22,
       h: 21,
+      manyClass: true,
     },
-    // {
-    //   btnType: "zcgl",
-    //   btnName: "资产管理",
-    //   active: "zcgl",
-    // },
-    // {
-    //   btnType: "afgl",
-    //   btnName: "安防管理",
-    //   active: "afgl",
-    // },
   ],
 };
 
@@ -107,31 +90,31 @@ export const toolMenu = {
       changeName: "LHS",
     },
     {
-      name: "交通展示",
-      menuType: "jtzs",
+      name: "交通设施",
+      menuType: "jtss",
       eventType: "geojson",
       changeName: "LHS",
       geoType: "line",
       lineUrl: LHSJTZSLine,
     },
+    {
+      name: "政府机构",
+      menuType: "zfjg",
+      eventType: "marker",
+      changeName: "LHS",
+    },
+    {
+      name: "配套设施",
+      menuType: "ptss",
+      eventType: "marker",
+      changeName: "LHS",
+    },
     // {
-    //   name: "政府机构",
-    //   menuType: "zfjg",
+    //   name: "文教点位",
+    //   menuType: "wjdw",
     //   eventType: "marker",
     //   changeName: "LHS",
     // },
-    {
-      name: "医护点位",
-      menuType: "yhdw",
-      eventType: "marker",
-      changeName: "LHS",
-    },
-    {
-      name: "文教点位",
-      menuType: "wjdw",
-      eventType: "marker",
-      changeName: "LHS",
-    },
     {
       name: "商超点位",
       menuType: "scdw",
@@ -141,6 +124,12 @@ export const toolMenu = {
     {
       name: "旅游景点",
       menuType: "lyjd",
+      eventType: "marker",
+      changeName: "LHS",
+    },
+    {
+      name: "其它",
+      menuType: "qtdw",
       eventType: "marker",
       changeName: "LHS",
     },
@@ -173,53 +162,144 @@ export const toolMenu = {
       eventType: "measure",
     },
   ],
-  cygh: [
+  xcgh: [
     {
-      name: "企业规划",
-      menuType: "qygh",
-      eventType: "geojson",
-      changeName: "LHS",
-      geoType: "polygonLine",
-    },
-    {
-      name: "交通规划",
-      menuType: "jtgh",
-      eventType: "geojson",
-      changeName: "LHS",
-      geoType: "polygonLine",
-    },
-  ],
-  tdgh: [
-    {
-      name: "土地利用",
+      name: "土地利用规划",
       menuType: "LHSTDLYGHAreas",
       eventType: "geojson",
       changeName: "LHS",
       geoType: "polygonLine",
     },
     {
-      name: "城镇开发",
+      name: "城镇开发边界",
       menuType: "LHSCZKFBJXAreas",
       eventType: "geojson",
       changeName: "LHS",
       geoType: "polygonLine",
     },
     {
-      name: "生态保护",
+      name: "生态保护线",
       menuType: "LHSSTBHHXAreas",
       eventType: "geojson",
       changeName: "LHS",
       geoType: "polygonLine",
     },
     {
-      name: "基本农田",
+      name: "基本农田保护线",
       menuType: "LHSYJJBNTBHX",
       eventType: "geojson",
       changeName: "LHS",
       geoType: "polygonLine",
     },
   ],
-  zczs: [
+  zcxm: [
+    [
+      {
+        name: "规划项目",
+        menuType: "ghxm",
+        eventType: "marker",
+      },
+      {
+        name: "住宅招商",
+        menuType: "zzzs",
+        eventType: "marker",
+      },
+      {
+        name: "耕地招商",
+        menuType: "gdzs",
+        eventType: "marker",
+      },
+      {
+        name: "林地招商",
+        menuType: "ldzs",
+        eventType: "marker",
+      },
+      {
+        name: "水域地招商",
+        menuType: "sydzs",
+        eventType: "marker",
+      },
+      {
+        name: "交通地招商",
+        menuType: "jtdzs",
+        eventType: "marker",
+      },
+      {
+        name: "商服地招商",
+        menuType: "sfdzs",
+        eventType: "marker",
+      },
+      {
+        name: "工业地招商",
+        menuType: "gydzs",
+        eventType: "marker",
+      },
+      {
+        name: "仓储地招商",
+        menuType: "ccdzs",
+        eventType: "marker",
+      },
+      {
+        name: "其它地类",
+        menuType: "qtdl",
+        eventType: "marker",
+      },
+    ],
+    [
+      {
+        name: "已建项目",
+        menuType: "yjxm",
+        eventType: "marker",
+      },
+      {
+        name: "粮油产业",
+        menuType: "lycy",
+        eventType: "marker",
+      },
+      {
+        name: "果蔬产业",
+        menuType: "gscy",
+        eventType: "marker",
+      },
+      {
+        name: "药材产业",
+        menuType: "yccy",
+        eventType: "marker",
+      },
+      {
+        name: "茶产业",
+        menuType: "ccy",
+        eventType: "marker",
+      },
+      {
+        name: "菌菇产业",
+        menuType: "jgcy",
+        eventType: "marker",
+      },
+      {
+        name: "花卉产业",
+        menuType: "hhcy",
+        eventType: "marker",
+      },
+      {
+        name: "畜牧养殖业",
+        menuType: "xmyzy",
+        eventType: "marker",
+      },
+      {
+        name: "渔业",
+        menuType: "yy",
+        eventType: "marker",
+      },
+    ],
+  ],
+  zszc: [
+    {
+      name: "全部招商",
+      menuType: "all",
+      eventType: "showAll",
+      changeName: "",
+    },
     {
       name: "住宅招商",
       menuType: "zzzs",
@@ -266,48 +346,6 @@ export const toolMenu = {
       eventType: "marker",
     },
   ],
-  cyzs: [
-    {
-      name: "粮油产业",
-      menuType: "lycy",
-      eventType: "marker",
-    },
-    {
-      name: "果蔬产业",
-      menuType: "gscy",
-      eventType: "marker",
-    },
-    {
-      name: "药材产业",
-      menuType: "yccy",
-      eventType: "marker",
-    },
-    {
-      name: "茶产业",
-      menuType: "ccy",
-      eventType: "marker",
-    },
-    {
-      name: "菌菇产业",
-      menuType: "jgcy",
-      eventType: "marker",
-    },
-    {
-      name: "花卉产业",
-      menuType: "hhcy",
-      eventType: "marker",
-    },
-    {
-      name: "畜牧养殖业",
-      menuType: "xmyzy",
-      eventType: "marker",
-    },
-    {
-      name: "渔业",
-      menuType: "yy",
-      eventType: "marker",
-    },
-  ],
   zldt: [
     {
       name: "全部点位",
@@ -335,61 +373,53 @@ export const toolMenu = {
       eventType: "marker",
     },
   ],
-  zcdt: [],
-  zcgl: [
-    {
-      name: "资产查询",
-      menuType: "zccx",
-      eventType: "addMarker",
-      addMarkerType: "zc",
-    },
-    {
-      name: "添加资产",
-      menuType: "xz",
-      eventType: "addMarker",
-      addMarkerType: "zc",
-    },
-    {
-      name: "编辑资产信息",
-      menuType: "bj",
-      eventType: "addMarker",
-      addMarkerType: "zc",
-    },
-    {
-      name: "删除资产",
-      menuType: "sc",
-      eventType: "addMarker",
-      addMarkerType: "zc",
-    },
-    {
-      name: "绘制线",
-      menuType: "hzx",
-      eventType: "draw",
-    },
-    {
-      name: "绘制面",
-      menuType: "hzm",
-      eventType: "draw",
-    },
-  ],
-  afgl: [
-    {
-      name: "添加安防点",
-      menuType: "xz",
-      eventType: "addMarker",
-      addMarkerType: "afd",
-    },
-    {
-      name: "编辑安防点",
-      menuType: "bj",
-      eventType: "addMarker",
-      addMarkerType: "afd",
-    },
-    {
-      name: "删除安防点",
-      menuType: "sc",
-      eventType: "addMarker",
-      addMarkerType: "afd",
-    },
+  zcdt: [
+    [
+      {
+        name: "其它资产",
+        menuType: "qtzc",
+        eventType: "marker",
+      },
+      {
+        name: "耕地",
+        menuType: "gd",
+        eventType: "marker",
+      },
+      {
+        name: "林地",
+        menuType: "ld",
+        eventType: "marker",
+      },
+      {
+        name: "水域地",
+        menuType: "syd",
+        eventType: "marker",
+      },
+      {
+        name: "交通地",
+        menuType: "jtd",
+        eventType: "marker",
+      },
+      {
+        name: "商服地",
+        menuType: "sfd",
+        eventType: "marker",
+      },
+      {
+        name: "工业地",
+        menuType: "gyd",
+        eventType: "marker",
+      },
+      {
+        name: "仓储地",
+        menuType: "ccd",
+        eventType: "marker",
+      },
+      {
+        name: "其它",
+        menuType: "qtd",
+        eventType: "marker",
+      },
+    ],
   ],
 };

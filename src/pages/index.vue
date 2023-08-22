@@ -31,7 +31,9 @@
         class="h-30px w-130px mr-10px"
         src="https://fastly.jsdelivr.net/npm/@vant/assets/apple-1.jpeg"
       /> -->
-      <div class="h-30px w-300px leading-30px bg-[#000] text-[#707070] text-16px px-34px">
+      <div
+        class="h-30px w-300px leading-30px bg-[#000] text-[#707070] text-16px px-34px"
+      >
         浙江元数科技有限公司
       </div>
       <div v-show="cartesian3">

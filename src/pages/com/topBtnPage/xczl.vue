@@ -59,8 +59,36 @@
                 </div>
               </div>
             </div>
+            <!-- 搜索功能 -->
+            <div
+              class="my-18px text-[#DAE3E6] text-16px flex items-center search"
+            >
+              <img
+                class="w-24px h-24px mr-8px"
+                :src="getAssets('icon_search.png')"
+                @click="isShowSearch = !isShowSearch"
+              />
+              <el-input
+                v-show="isShowSearch"
+                v-model="searchVal"
+                @change="onSearch"
+                placeholder="请输入搜索关键字"
+              >
+                <template #suffix>
+                  <div class="w-1px h-16px bg-[#5C9099]"></div>
+                    <img
+                      class="w-10px h-10px mx-8px"
+                      :src="getAssets('icon_ss.png')"
+                    />
+                    <span class="text-[#EDF4FF] text-12px cursor-pointer">搜索</span>
+                </template>
+              </el-input>
+              <span v-show="!isShowSearch"
+                >为您找到{{ xcfzList.length || 0 }}个项目</span
+              >
+            </div>
             <!-- 列表 -->
-            <List :list="xcfzList" />
+            <List :list="xcfzList.zsxm"  @show-info="showInfo"/>
           </div>
         </template>
       </InfoDialog>
@@ -79,16 +107,29 @@ import "./com.less";
 import List from "./list.vue";
 import { xczlZS, xcfzList, tj } from "./pageConst";
 import getAssets from "@/utils/getAssets";
+import { debounce } from "@/utils/throttle";
 import * as echarts from "echarts";
 type EChartsOption = echarts.EChartsOption;
 
 const dialog = ref<boolean>(true);
-
-const zxActive = ref<any>("zhxm"); //乡村资讯tab点击
+const zxActive = ref<any>("fwzc"); //乡村资讯tab点击
+const isShowSearch = ref<boolean>(false);
+const searchVal = ref<any>("");
 
 const infoClick = (i) => {
   zxActive.value = i.val;
 };
+
+const emit = defineEmits(["showInfo"]);
+const showInfo =(i)=>{
+  emit("showInfo",i);
+}
+
+// 搜索事件
+const onSearch = debounce((value: string | number) => {
+  isShowSearch.value = !isShowSearch.value;
+  console.log(value);
+});
 
 let option: EChartsOption = {
   tooltip: {
@@ -98,7 +139,7 @@ let option: EChartsOption = {
   series: [
     {
       type: "pie",
-       radius: [20, 80],
+      radius: [20, 80],
       data: [
         { value: 58, name: "房屋" },
         { value: 52, name: "农田" },
@@ -108,10 +149,10 @@ let option: EChartsOption = {
       ],
       roseType: "area",
       itemStyle: {
-        borderRadius: 5
+        borderRadius: 5,
       },
       label: {
-        color: '#41A6FC'
+        color: "#41A6FC",
       },
       labelLine: {
         smooth: 0.2,
@@ -133,6 +174,25 @@ onMounted(() => {
 </script>
 
 <style lang="less" scoped>
+:deep(.el-input) {
+  width: 100%;
+  height: 28px;
+
+  .el-input__wrapper {
+    background: #0d2124;
+    box-shadow: inset 0px 0px 5px -1px #92efff;
+    border-radius: 8px;
+    padding-left: 20px;
+
+    .el-input__inner {
+      color: #7ac0cc;
+    }
+
+    .el-input__inner::placeholder {
+      color: #7ac0cc;
+    }
+  }
+}
 .left::-webkit-scrollbar {
   display: none; /* Chrome Safari */
 }

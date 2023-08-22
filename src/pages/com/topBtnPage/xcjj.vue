@@ -15,7 +15,7 @@
               </el-carousel-item>
             </el-carousel>
             <!-- 滚动文字 -->
-            <div class="jjxq_text mt-21px">
+            <div class="jjxq_text mt-12px">
               <div
                 @click="(showOverlayDialog = true), (showType = 'text')"
                 class="scroll_text"
@@ -57,14 +57,14 @@
                       class="cursor-pointer mr-20px text-14px"
                       @click="infoClick(i)"
                     >
-                      <div :class="{ activeItem: zxActive == i.val }">
+                      <div :class="{ activeItem: zxActive.val == i.val }">
                         {{ i.label }}
                       </div>
                     </div>
                   </template>
                 </div>
               </div>
-              <div style="height: 190px; width: max-content">
+              <div style="height: 155px; width: max-content">
                 <Vue3Marquee :vertical="true" :pause-on-hover="true">
                   <div
                     class="text-20px mb-12px cursor-pointer"
@@ -91,6 +91,7 @@
   <OverlayDialog v-show="showOverlayDialog">
     <template #overlayMain>
       <div class="overlayMain">
+        <div class="text-[#58E7FF] text-28px ml-170px mt-[-10px]">{{zxActive.label}}</div>
         <img
           @click="showOverlayDialog = false"
           class="float-right mt-30px mr-49px w-48px h-48px"
@@ -136,10 +137,10 @@ import getAssets from "@/utils/getAssets";
 const dialog = ref<boolean>(true); //可视化面板是否显示
 const showOverlayDialog = ref<boolean>(false); //是否显示弹窗
 const showType = ref<any>(); //弹窗显示类型
-const zxActive = ref<any>("xw"); //乡村资讯tab点击
+const zxActive = ref<any>(xcjjZX[0]); //乡村资讯tab点击
 
 const infoClick = (i) => {
-  zxActive.value = i.val;
+  zxActive.value = i;
 };
 </script>
 
@@ -148,10 +149,14 @@ const infoClick = (i) => {
   .info_main {
     :deep(.el-carousel) {
       .el-carousel__arrow {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(46, 74, 77, 0.7);
       }
       .el-carousel__indicators {
         display: none;
+      }
+      .el-icon svg{
+        width: 12px;
+        height: 12px;
       }
     }
     .jjxq_text {

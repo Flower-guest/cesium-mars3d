@@ -9,6 +9,8 @@ export default class MeasureUnit {
   polyline: any;
   polylinePrimitive: any;
   point: any;
+  polygon: any;
+  polygonPrimitive: any;
 
   constructor(map3d) {
     this.map3d = map3d;
@@ -16,6 +18,9 @@ export default class MeasureUnit {
     this.polylinePrimitive = new mars3d.layer.GraphicLayer();
     this.polyline = [];
     this.map3d.addLayer(this.polylinePrimitive);
+    this.polygonPrimitive = new mars3d.layer.GraphicLayer();
+    this.polygon = [];
+    this.map3d.addLayer(this.polygonPrimitive);
     this.point = new mars3d.layer.GraphicLayer();
     this.map3d.addLayer(this.point);
   }
@@ -144,6 +149,32 @@ export default class MeasureUnit {
     this.polyline.push(graphic);
     this.polylinePrimitive.addGraphic(graphic);
   }
+  // 添加面
+  addPolygonPrimitive(option: any) {
+    const graphic = new mars3d.graphic.PolygonPrimitive({
+      positions: option.positions,
+      style: option.style
+        ? {
+            ...option.style,
+            distanceDisplayCondition: option?.di ?? true, //是否按视距显示
+            distanceDisplayCondition_far: option?.diFar ?? 200000, //最大距离
+            distanceDisplayCondition_near: option?.diNear ?? 0, //最小距离
+          }
+        : {
+            width: option?.width ?? 3,
+            color: option.color,
+            opacity: option?.opc ?? 1,
+            distanceDisplayCondition: option?.di ?? false, //是否按视距显示
+            distanceDisplayCondition_far: option?.diFar ?? Number.MAX_VALUE, //最大距离
+            distanceDisplayCondition_near: option?.diNear ?? 0, //最小距离
+            clampToGround: option.clamp ?? true,
+            label: option?.label ? this.addLabel(option.label) : {},
+          },
+      flyTo: option?.flyTo ?? false,
+    });
+    this.polygon.push(graphic);
+    this.polygonPrimitive.addGraphic(graphic);
+  }
   //添加文本元素
   addLabel(option: any) {
     return {
@@ -202,6 +233,12 @@ export default class MeasureUnit {
         i.remove();
       }); //删除mars3d划的线
       this.polyline = [];
+    }
+    if (this.polygon.length > 0) {
+      this.polygon.forEach((i) => {
+        i.remove();
+      }); //删除mars3d划的线
+      this.polygon = [];
     }
   }
 }

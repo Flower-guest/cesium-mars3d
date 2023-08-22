@@ -40,9 +40,10 @@
         <img
           class="w-14px h-10px"
           :style="{
-            width:activeBtn == i.active ? '14px' : '10px',
-            height:activeBtn == i.active ? '10px' : '14px',
-          opacity: isShowXL(toolMenu[i.btnType]) ? 1 : 0 }"
+            width: activeBtn == i.active ? '14px' : '10px',
+            height: activeBtn == i.active ? '10px' : '14px',
+            opacity: isShowXL(toolMenu[i.btnType]) ? 1 : 0,
+          }"
           :src="
             getAssets(activeBtn == i.active ? 'icon_xl1.png' : 'icon_xl2.png')
           "
@@ -52,6 +53,7 @@
       <template v-if="isShowXL(toolMenu[i.btnType])">
         <OperateMenu
           v-show="activeBtn == i.active"
+          :many-class="i?.manyClass"
           :choose-type="i?.chooseType"
           :tool-menu="toolMenu[i.btnType]"
         />

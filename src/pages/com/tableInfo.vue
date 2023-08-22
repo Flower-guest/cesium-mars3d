@@ -47,27 +47,65 @@
         </div>
       </div>
     </div>
-    <div v-else class="table_info">
-      <!-- 招商表单 -->
-      <div v-if="tableInfo3">
-        <OverlayDialog v-if="tableInfo3.gltype == 'edit'">
-          <template #overlayMain>
-            <!-- 编辑页面 -->
-            <div class="form_dialog">
-              <EditInfo />
-              <div class="flex justify-center my-10px">
-                <el-button type="primary" @click="updateShowTable"
-                  >保存</el-button
-                >
-                <el-button @click="updateShowTable">取消</el-button>
-              </div>
-            </div>
-          </template>
-        </OverlayDialog>
+    <!-- 产业信息展示页面 -->
+    <div class="overlayMain" v-else-if="tableInfo4">
+      <div class="flex justify-between items-center mt-31px px-12px">
+        <img
+          @click="updateShowTable"
+          class="w-23px h-32px ml-7px"
+          :src="getAssets('icon_xxmb.png')"
+        />
+        <div class="text-23px">冯家茶园</div>
+        <img
+          @click="updateShowTable"
+          class="w-20px h-20px"
+          :src="getAssets('gb3.png')"
+        />
       </div>
-
-      <!-- 建筑物弹窗 -->
-      <div v-else class="center_dialog dialog_table">
+      <div class="my-10px px-10px text-[#333] text-16px">
+        <el-tabs v-model="activeName" class="demo-tab" @tab-click="handleClick">
+          <el-tab-pane label="基本信息" name="first">
+            <div>
+              <el-carousel
+                class="w-100%"
+                height="auto"
+                indicator-position="none"
+              >
+                <el-carousel-item class="aa">
+                  <div class="relative" @click="() => (showIframe = true)">
+                    <img
+                      class="w-100%"
+                      src="http://demo.fantere.com/3dCockpit/assets/zs.bb7f15a0.png"
+                    />
+                    <img class="qj_icon" :src="getAssets('icon-qj.png')" />
+                  </div>
+                </el-carousel-item>
+                <el-carousel-item class="aa">
+                  <img
+                    class="w-100%"
+                    src="http://demo.fantere.com/3dCockpit/assets/zs.bb7f15a0.png"
+                  />
+                </el-carousel-item>
+              </el-carousel>
+            </div>
+            <div class="jj com">
+              冯家茶园坐落于长沙市岳麓区莲花山村，地处北纬: N 251533.5”经度:
+              E118339.8”，基地土质多为红
+              土壤，PH值在4.5~6.0之间，土层深厚，土体松软，
+              保水性能好，有机质含量较高，矿质营养元素丰富。
+            </div>
+            <div class="text-[#F2FEFF] text-18px mb-14px">产业合作</div>
+            <div class="py-15px pl-13px com">
+              <div class="mb-14px">联系人:黄胜</div>
+              <div>联系电话: 159****2865</div>
+            </div>
+          </el-tab-pane>
+          <!-- <el-tab-pane label="售卖产品" name="second">Config</el-tab-pane> -->
+        </el-tabs>
+      </div>
+    </div>
+    <div v-else class="table_info">
+      <div class="center_dialog dialog_table">
         <div class="flex justify-between text-#00F9FF mb-15px">
           <span class="text-14px cursor-pointer"></span>
           <span class="text-20px">属性信息</span>
@@ -104,7 +142,6 @@
 </template>
 
 <script setup lang="ts">
-import EditInfo from "./editInfo/index.vue";
 import TableList from "./TableList/index.vue";
 import { tableList, tableList2, tabPanes, rowList } from "../config/tableInfo";
 import getAssets from "@/utils/getAssets";
@@ -117,18 +154,26 @@ const props = defineProps<detailProps>();
 const showTable = toRef(props, "showTable");
 const tableInfo1 = ref<any>();
 const tableInfo2 = ref<any>();
-const tableInfo3 = ref<any>({ gltype: "add" });
+const tableInfo3 = ref<any>();
+const tableInfo4 = ref<any>();
 const showIframe = ref<boolean>(false); //是否显示iframe
 const toPageUrl = ref<string>();
+const activeName = ref<string>("first");
 // 传参实时监听变化与赋值
 watch(
   () => props.tableInfo,
   (newValue) => {
-    if (newValue.type == "lhs" || newValue.type == "xz") {
+    tableInfo1.value = null;
+    tableInfo2.value = null;
+    tableInfo3.value = null;
+    tableInfo4.value = null;
+    if (newValue.type == "zs") {
       // billboard点击事件
       tableInfo3.value = newValue;
       toPageUrl.value =
         "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b";
+    } else if (newValue.type == "cy") {
+      tableInfo4.value = newValue;
     } else {
       // 面点击事件
       if (newValue?.AREA) {
@@ -142,6 +187,9 @@ watch(
     }
   }
 );
+const handleClick = () => {
+  console.log("ss");
+};
 const emit = defineEmits(["update:showTable"]);
 const updateShowTable = () => {
   emit("update:showTable", false);
@@ -237,4 +285,61 @@ const updateShowTable = () => {
     height: 240px;
   }
 }
+:deep(.demo-tab) {
+  .el-tabs__item {
+    padding: 30px 30px 20px;
+    color: #dae5e6;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .is-active {
+    color: #78d0e0;
+  }
+  .el-tabs__active-bar {
+    background-color: #78d0e0;
+  }
+  .el-tabs__nav-wrap::after {
+    background-color: transparent;
+  }
+  .com {
+    box-sizing: border-box;
+    padding: 14px 15px 28px;
+    background: rgba(107, 142, 153, 0.2);
+    border: 1px solid #0c454c;
+    color: #e6e6e6;
+    font-size: 16px;
+  }
+  .jj {
+    margin: 14px 0;
+    line-height: 26px;
+    max-height: 256px;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  .jj::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .jj::-webkit-scrollbar-track {
+    background: rgb(179, 177, 177);
+    border-radius: 10px;
+  }
+
+  .jj::-webkit-scrollbar-thumb {
+    background: #5c9099;
+    border-radius: 10px;
+  }
+}
+  :deep(.el-carousel) {
+      .el-carousel__arrow {
+        background-color: rgba(46, 74, 77, 0.7);
+      }
+      .el-carousel__indicators {
+        display: none;
+      }
+      .el-icon svg{
+        width: 12px;
+        height: 12px;
+      }
+    }
 </style>

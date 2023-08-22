@@ -1,13 +1,35 @@
 <template>
   <!-- 场景切换选项 -->
   <div class="menuBox">
-    <template v-if="props.chooseType == 'checkbox'">
+    <template v-if="props.manyClass">
+      <div class="checkbox" v-for="(i, idx) in props.toolMenu" :key="idx">
+        <el-checkbox
+          v-model="checkAll"
+          :indeterminate="isIndeterminate"
+          @change="handleCheckAllChange"
+          >{{ i }}</el-checkbox
+        >
+        <!-- <el-checkbox-group
+          v-model="checkedCities"
+          @change="handleCheckedCitiesChange"
+        >
+          <el-checkbox
+            v-for="(i, idx) in props.toolMenu"
+            :key="i.name"
+            :label="i.menuType"
+            v-show="idx !== 0"
+            >{{ i.name }}</el-checkbox
+          >
+        </el-checkbox-group> -->
+      </div>
+    </template>
+    <template v-else-if="props.chooseType == 'checkbox'">
       <div class="checkbox">
         <el-checkbox
           v-model="checkAll"
           :indeterminate="isIndeterminate"
           @change="handleCheckAllChange"
-          >全部场景</el-checkbox
+          >{{ props.toolMenu[0].name }}</el-checkbox
         >
         <el-checkbox-group
           v-model="checkedCities"
@@ -46,9 +68,11 @@ const activeBtn = ref<any>(); //当前点击的按钮
 interface detailProps {
   toolMenu: any;
   chooseType: string;
+  manyClass: boolean;
 }
 const props = withDefaults(defineProps<detailProps>(), {
- chooseType: "raido",
+  chooseType: "raido",
+  manyClass: false,
 });
 const checkAll = ref<boolean>(false);
 const isIndeterminate = ref<boolean>(true);
@@ -63,14 +87,6 @@ const initData = () => {
   addScene = window.cesium.addScene;
   mapEvent = window.cesium.mapEvent;
   drawUnit = window.cesium.drawUnit;
-  props.toolMenu.forEach((i, idx) => {
-    if (idx > 0) {
-      checkedCities.value.push(i.menuType);
-      cities.push(i.menuType);
-    }
-  });
-  checkAll.value = true;
-  isIndeterminate.value = false;
 };
 const changeViews = (val) => {
   activeBtn.value = activeBtn.value == val.menuType ? "" : val.menuType;

@@ -171,7 +171,7 @@ export const dJSON = [
   },
   {
     url: LHSTDLYGHAreas,
-    name: "土地利用",
+    name: "土地利用规划",
     viewName: "LHS",
     isMX: false,
     height: 50,
@@ -184,7 +184,7 @@ export const dJSON = [
   },
   {
     url: LHSCZKFBJXAreas,
-    name: "城镇开发",
+    name: "城镇开发边界",
     viewName: "LHS",
     isMX: false,
     height: 50,
@@ -197,7 +197,7 @@ export const dJSON = [
   },
   {
     url: LHSSTBHHXAreas,
-    name: "生态保护",
+    name: "生态保护线",
     viewName: "LHS",
     isMX: false,
     height: 50,
@@ -210,7 +210,7 @@ export const dJSON = [
   },
   {
     url: LHSYJJBNTBHX,
-    name: "基本农田",
+    name: "基本农田保护线",
     viewName: "LHS",
     isMX: false,
     height: 50,

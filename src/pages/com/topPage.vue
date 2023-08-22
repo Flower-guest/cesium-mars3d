@@ -57,11 +57,17 @@
     </div>
   </div>
   <XXJJ v-if="topClickType == btn[0].type" />
-  <XCFZ v-else-if="topClickType == btn[1].type" />
-  <XCZL v-else />
+  <XCFZ v-else-if="topClickType == btn[1].type"  @show-info="showInfo"/>
+  <XCZL v-else @show-info="showInfo" />
+  <TableInfo
+    :table-info="tableInfo"
+    :show-table="showTable"
+    @update:show-table="showTable = $event"
+  />
 </template>
 
 <script setup lang="ts">
+import TableInfo from "./tableInfo.vue";
 import XXJJ from "./topBtnPage/xcjj.vue";
 import XCFZ from "./topBtnPage/xcfz.vue";
 import XCZL from "./topBtnPage/xczl.vue";
@@ -92,21 +98,30 @@ const years = useDateFormat(useNow(), "YYYY.MM.DD"); //年份
 const time = useDateFormat(useNow(), "HH:mm:ss"); //时间
 const weatherInfo = ref<any>("11"); //天气
 const topClickType = ref<any>(); //默认页面
+const showTable = ref<boolean>(false); //是否展示表单
+const tableInfo = ref<any>(); //点击建筑物table数据
+const showMany = ref<boolean>(false);
 
 const init = async () => {
   // weatherInfo.value = await getWeather();
   topClick(btn[0].type);
 };
-const showMany = ref<boolean>(false);
 // 页面切换按钮点击
 const topClick = (type) => {
   topClickType.value = type;
   topType.setTopClickType(type);
+  showTable.value = false;
 };
 // 更多点击功能
 const manyClick = (url) => {
   window.open(url, "_blank");
 };
+
+// 子组件列表点击进行表单展示
+const showInfo = (i)=>{
+showTable.value = true;
+tableInfo.value = i;
+}
 
 init();
 </script>
