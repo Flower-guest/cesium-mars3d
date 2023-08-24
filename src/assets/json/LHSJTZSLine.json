@@ -930,47 +930,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "未命名5",
-        "类型": "polygon",
-        "来源": "我是layer上绑定的Popup",
-        "备注": "我支持鼠标交互",
-        "id": "m-4ad78d06-756d-4798-8b45-40d93ecb2ddc",
-        "type": "Polygon",
-        "style": {
-          "color": "#29cf34",
-          "opacity": 0.5,
-          "outline": true,
-          "outlineWidth": 3,
-          "outlineColor": "#ffffff",
-          "materialType": "Color",
-          "clampToGround": true,
-          "materialOptions": { "color": "rgba(0,0,0,0.4)" },
-          "label": {
-            "font_size": 18,
-            "color": "#ffffff",
-            "distanceDisplayCondition": true,
-            "distanceDisplayCondition_far": 500000,
-            "distanceDisplayCondition_near": 0,
-            "clampToGround": false
-          }
-        }
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [112.429965, 28.315731, 76.9],
-            [112.635749, 27.777318, 16.7],
-            [113.390769, 27.917854, 137.4],
-            [113.149503, 28.4035, 118.9],
-            [112.878342, 28.379555, 46.1]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "未命名1",
         "id": "m-7d9903e6-24ce-46f9-9ae6-de1102baf1dd",
         "type": "polyline",
@@ -1270,49 +1229,6 @@
             [112.908897, 28.042983, 28.8],
             [112.907807, 28.045521, 26.6],
             [112.90749, 28.046576, 27.9]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "",
-        "id": "m-6ca0586c-3c7d-4041-bdd8-4f35f450a780",
-        "type": "Polygon",
-        "style": {
-          "color": "#29cf34",
-          "opacity": 0.5,
-          "outline": true,
-          "outlineWidth": 3,
-          "outlineColor": "#ffffff",
-          "materialType": "PolyGradient",
-          "clampToGround": false,
-          "materialOptions": {
-            "color": "rgba(255,255,255,1)",
-            "alphaPower": 0.8,
-            "diffusePower": 1.6,
-            "materialType": "PolyGradient"
-          },
-          "label": {
-            "font_size": 18,
-            "color": "#ffffff",
-            "distanceDisplayCondition": true,
-            "distanceDisplayCondition_far": 500000,
-            "distanceDisplayCondition_near": 0,
-            "clampToGround": false
-          }
-        }
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [112.93343, 28.072539, 17.7],
-            [112.936598, 28.064342, 18.9],
-            [112.948005, 28.069298, 17.2],
-            [112.942735, 28.078434, 19.5],
-            [112.935274, 28.074723, 18.6]
           ]
         ]
       }

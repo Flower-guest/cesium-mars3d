@@ -84,7 +84,7 @@
                 </template>
               </el-input>
               <span v-show="!isShowSearch"
-                >为您找到{{ xcfzList.length || 0 }}个项目</span
+                >为您找到{{ listLength }}个项目</span
               >
             </div>
             <!-- 列表 -->
@@ -115,7 +115,9 @@ const dialog = ref<boolean>(true);
 const zxActive = ref<any>("fwzc"); //乡村资讯tab点击
 const isShowSearch = ref<boolean>(false);
 const searchVal = ref<any>("");
-
+const listLength = computed(() => {
+  return xcfzList.zsxm.length || 0
+})
 const infoClick = (i) => {
   zxActive.value = i.val;
 };
@@ -192,8 +194,5 @@ onMounted(() => {
       color: #7ac0cc;
     }
   }
-}
-.left::-webkit-scrollbar {
-  display: none; /* Chrome Safari */
 }
 </style>

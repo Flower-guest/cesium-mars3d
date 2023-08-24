@@ -57,7 +57,7 @@
     </div>
   </div>
   <XXJJ v-if="topClickType == btn[0].type" />
-  <XCFZ v-else-if="topClickType == btn[1].type"  @show-info="showInfo"/>
+  <XCFZ v-else-if="topClickType == btn[1].type" @show-info="showInfo" />
   <XCZL v-else @show-info="showInfo" />
   <TableInfo
     :table-info="tableInfo"
@@ -71,7 +71,7 @@ import TableInfo from "./tableInfo.vue";
 import XXJJ from "./topBtnPage/xcjj.vue";
 import XCFZ from "./topBtnPage/xcfz.vue";
 import XCZL from "./topBtnPage/xczl.vue";
-// // import { getWeather } from "@/service/api";
+import { getWeather } from "@/service/api";
 import getAssets from "@/utils/getAssets";
 import { useTopTypeStore } from "@/store";
 const topType = useTopTypeStore();
@@ -90,9 +90,10 @@ const btn = [
   },
 ];
 const many = [
-  { name: "测试测试", url: "https://www.baidu.com/" },
-  { name: "测试测试", url: "https://www.baidu.com/" },
-  { name: "测试测试", url: "https://www.baidu.com/" },
+  { name: "公共文旅", url: "http://hnggwhy.wentiyun.cn/index.html" },
+  { name: "产权交易", url: "https://yuelu.nongjiao.com/" },
+  { name: "农业农村", url: "http://nyw.changsha.gov.cn/nync/mlnc/" },
+  { name: "智慧党建", url: "http://zhdj.xfc.gov.cn/login" },
 ];
 const years = useDateFormat(useNow(), "YYYY.MM.DD"); //年份
 const time = useDateFormat(useNow(), "HH:mm:ss"); //时间
@@ -103,7 +104,7 @@ const tableInfo = ref<any>(); //点击建筑物table数据
 const showMany = ref<boolean>(false);
 
 const init = async () => {
-  // weatherInfo.value = await getWeather();
+  weatherInfo.value = await getWeather();
   topClick(btn[0].type);
 };
 // 页面切换按钮点击
@@ -118,10 +119,10 @@ const manyClick = (url) => {
 };
 
 // 子组件列表点击进行表单展示
-const showInfo = (i)=>{
-showTable.value = true;
-tableInfo.value = i;
-}
+const showInfo = (i) => {
+  showTable.value = true;
+  tableInfo.value = i;
+};
 
 init();
 </script>
@@ -144,7 +145,7 @@ init();
     height: 100%;
     padding-left: 40px;
     flex: 1;
-    background: url("../../assets/img/top-bgl.png") no-repeat;
+    background: url("../../../assets/img/top-bgl.png") no-repeat;
     background-size: 100% 100%;
     .title {
       font-family: "FZCHSJT";
@@ -165,7 +166,7 @@ init();
         left: -30px;
         width: 140px;
         padding: 14px 20px 8px;
-        background: url("../../assets/img/many-bg.png") no-repeat;
+        background: url("../../../assets/img/many-bg.png") no-repeat;
         background-size: 100% 100%;
 
         .item:hover::after {
@@ -175,7 +176,7 @@ init();
           bottom: -6px;
           width: 100%;
           height: 8px;
-          background: url(../../assets/img/icon_gy.png) no-repeat left
+          background: url("../../../assets/img/icon_gy.png") no-repeat left
             center/100% auto;
         }
       }
@@ -198,7 +199,7 @@ init();
     padding-right: 28px;
     display: flex;
     justify-content: flex-end;
-    background: url("../../assets/img/top-bgr.png") no-repeat;
+    background: url("../../../assets/img/top-bgr.png") no-repeat;
     background-size: 100% 100%;
     .top_info {
       display: flex;
@@ -218,7 +219,7 @@ init();
     bottom: 30px;
     width: 100%;
     height: 3px;
-    background: url(../../assets/img/line_top.png) no-repeat left center/100%
+    background: url("../../../assets/img/line_top.png") no-repeat left center/100%
       auto;
   }
 }

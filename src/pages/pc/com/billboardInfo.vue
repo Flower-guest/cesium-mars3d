@@ -1,48 +1,8 @@
 <template>
   <div v-show="showBillboard">
     {{ !popupInfo?.name }}
-    <!-- 信息弹窗 -->
-    <div
-      v-show="popupInfo?.type !== 'jkdw'"
-      ref="infoDialog"
-      class="info_dialog py-10px text-16px"
-      :style="{
-        left: bPosition.x + 'px',
-        top: bPosition.y + 'px',
-      }"
-    >
-      <el-divider />
-      <div class="flex justify-between items-center mt-10px px-6px">
-        <img class="w-21px h-21px" :src="getAssets('info-dialog-icon.png')" />
-        <el-text truncated>{{ popupInfo?.name }}</el-text>
-        <img
-          class="w-14px h-14px"
-          @click="updateShowBillboard"
-          :src="getAssets('gb3.png')"
-        />
-      </div>
-      <div class="my-25px px-6px">
-        <template v-if="popupInfo?.img">
-          <div @click="() => (showIframe = true)" class="relative">
-            <img class="w-100%" :src="popupInfo?.img" />
-            <img class="qj_icon" :src="getAssets('icon-qj.png')" />
-          </div>
-        </template>
-        <template v-else>
-          <video
-            class="w-100%"
-            preload="auto"
-            controls
-            :src="popupInfo?.video"
-          ></video>
-        </template>
-      </div>
-      <div class="px-6px leading-0.5 indent-0.5 text-12px">
-        {{ popupInfo?.jj }}
-      </div>
-    </div>
     <!-- 监控弹窗 -->
-    <div class="overlay" v-if="popupInfo?.type == 'jkdw'">
+    <div class="overlay" v-if="popupInfo?.type == 'spjk'">
       <div class="jk_dialog">
         <div class="flex justify-between">
           <div class="flex items-center text-#00FFFF text-14px mr-79px pt-11px">
@@ -62,51 +22,64 @@
         </div>
         <div class="w-100% h-1px bg-#00F9FF mt-9px mb-10px"></div>
         <div>
+          <!-- <videoPlay v-bind="options" /> -->
           <video
             class="w-370px h-155px"
             preload="auto"
             controls
-            :src="popupInfo?.videoUrl"
+            :src="popupInfo?.videoUrl ?? 'http://demo.fantere.com/3dCockpit/assets/test.2a8a8f3c.mp4'"
           ></video>
         </div>
       </div>
     </div>
-    <!-- webview组件 -->
-    <WebViewPage
-      :to-page-url="popupInfo?.qj ?? 's'"
-      :show-iframe="showIframe"
-      @update:show-iframe="showIframe = $event"
-    />
   </div>
 </template>
 
 <script setup lang="ts">
+// import "vue3-video-play/dist/style.css";
+// import { videoPlay } from "vue3-video-play";
 import getAssets from "@/utils/getAssets";
 interface detailProps {
   showBillboard: boolean;
   popupInfo: any;
-  bPosition: any;
 }
 const props = defineProps<detailProps>();
 const showBillboard = toRef(props, "showBillboard");
 const popupInfo = ref<any>();
-const bPosition = ref<any>(props.bPosition);
-const infoDialog = ref<any>();
 const formatted = useDateFormat(useNow(), "YYYY-MM-DD HH:mm:ss");
-const showIframe = ref<boolean>(false); //是否显示iframe
+// https://proxy.fantere.com/qs/gethls14_14_2_0_1.m3u8?uuid=d0c16207
+// const options = reactive<any>({
+//   width: "370px", //播放器宽度
+//   height: "155px", //播放器高度
+//   color: "#409eff", //主题色
+//   title: "", //视频名称
+//   src: "https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/IronMan.mp4", //视频源
+//   muted: false, //静音
+//   webFullScreen: false,
+//   speedRate: ["0.75", "1.0", "1.25", "1.5", "2.0"], //播放倍速
+//   autoPlay: false, //自动播放
+//   loop: false, //循环播放
+//   mirror: false, //镜像画面
+//   ligthOff: false, //关灯模式
+//   volume: 0.3, //默认音量大小
+//   control: true, //是否显示控制
+//   controlBtns: [
+//     "audioTrack",
+//     "quality",
+//     "speedRate",
+//     "volume",
+//     "setting",
+//     "pip",
+//     "pageFullScreen",
+//     "fullScreen",
+//   ], //显示所有按钮,
+// });
 
 // 监听弹窗位置
 watch(
-  () => [props.popupInfo, props.bPosition],
+  () => props.popupInfo,
   (newVal) => {
-    popupInfo.value = newVal[0];
-
-    // 修改弹窗位置 排除监控与信息录入
-    if (newVal[0].type !== "jk") {
-      const x = newVal[1].x + infoDialog.value.offsetWidth / 10;
-      const y = newVal[1].y - infoDialog.value.offsetHeight / 10;
-      bPosition.value = { x, y };
-    }
+    popupInfo.value = newVal;
   }
 );
 

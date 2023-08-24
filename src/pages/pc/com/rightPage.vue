@@ -52,7 +52,7 @@
       <!-- 场景切换选项 -->
       <template v-if="isShowXL(toolMenu[i.btnType])">
         <OperateMenu
-          v-show="activeBtn == i.active"
+          v-if="activeBtn == i.active"
           :many-class="i?.manyClass"
           :choose-type="i?.chooseType"
           :tool-menu="toolMenu[i.btnType]"
@@ -80,12 +80,12 @@
 <script setup lang="ts">
 import OperateMenu from "./operateMenu.vue";
 import GraphicEditor from "./graphicEditor/index.vue";
-import * as Cesium from "cesium";
 import { btnTool, toolMenu } from "../config/rigthPage";
 import getAssets from "@/utils/getAssets";
 import Coordtransform from "@/utils/cesium/Coordtransform";
 import { debounce } from "@/utils/throttle";
 import { useTopTypeStore } from "@/store";
+import * as mars3d from "mars3d";
 
 const TMap = (window as any).TMap;
 const topTypeStore = useTopTypeStore();
@@ -97,12 +97,15 @@ const suggestionList = ref<any>([]); //地址搜索出来的列表
 const topClickType = ref<string>(topTypeStore.TopClickType); //顶部页面点击选择类型
 const glType = ref<string>(""); //点击资产按钮类型  add | delete | edit
 
-let addScene, suggest;
+let addScene, suggest, mars3dAdd, divGraphic;
 
 watch(
   () => topTypeStore.TopClickType,
   (newVal) => {
     topClickType.value = newVal;
+    mars3dAdd.showBillboard();
+    mars3dAdd.deleteFn();
+    divGraphic.showDivGraphic();
   }
 );
 const isShowXL = computed(() => (item: any) => {
@@ -114,19 +117,11 @@ const emit = defineEmits(["showMarker"]);
 
 // tool点击功能 hasLength:是否需要展示长度
 const toolClick = (i) => {
-  addScene = window.cesium.addScene;
   activeBtn.value = activeBtn.value == i.active ? "" : i.active;
   switch (i.btnType) {
-    case "qjdw":
-      console.log("qjdw");
-      break;
     case "wzss":
       showView.value = false;
       isShowSearch.value = !isShowSearch.value;
-      break;
-    case "jgqxw":
-      showView.value = false;
-      window.open("https://www.jgqxw.com/index/user/index.html", "_blank");
       break;
     default:
       if (!showView.value) showView.value = true;
@@ -161,14 +156,17 @@ const setSuggestion = (val) => {
     val.location.lng,
     val.location.lat
   );
-  addScene.cameraFlyTo(
-    Cesium.Cartesian3.fromDegrees(location[0], location[1], 500)
+  window.cesium.map3d.flyToPoint(
+    mars3d.LngLatPoint.fromArray([...location, 20])
   );
   searchVal.value = "";
 };
 
 onMounted(async () => {
   await initSearch();
+  addScene = window.cesium.addScene;
+  mars3dAdd = window.cesium.mars3dAdd;
+  divGraphic = window.cesium.divGraphic;
 });
 
 defineExpose({
@@ -263,7 +261,7 @@ defineExpose({
     padding: 11px 11px 9px 8px;
     box-sizing: border-box;
     cursor: pointer;
-    background: url("../../assets/img/btn-bg.png") no-repeat;
+    background: url("../../../assets/img/btn-bg.png") no-repeat;
     background-size: 100% 100%;
     font-family: "USTitleBlack";
   }

@@ -12,7 +12,7 @@
 import getAssets from "@/utils/getAssets"
 interface detailProps {
   showIframe: boolean;
-  toPageUrl: string;
+  toPageUrl: any;
 }
 const props = defineProps<detailProps>();
 const showIframe = toRef(props, 'showIframe');

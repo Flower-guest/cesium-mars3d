@@ -87,7 +87,7 @@
                   </template>
                 </el-input>
                 <span v-show="!isShowSearch"
-                  >为您找到{{ xcfzList.length || 0 }}个项目</span
+                  >为您找到{{ listLength }}个项目</span
                 >
               </div>
             </div>
@@ -122,7 +122,9 @@ const isShowSearch = ref<boolean>(false);
 const isShowScreen = ref<boolean>(false);
 const searchVal = ref<any>("");
 const zsInfoList = ref<any>(xcfzList[xcfzZS[0].val]);
-
+const listLength = computed(() => {
+  return zsInfoList.value.length || 0
+})
 // 招商信息tab点击
 const infoClick = (i) => {
   zxActive.value = i.val;

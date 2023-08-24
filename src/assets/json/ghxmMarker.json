@@ -1,0 +1,110 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.8834201633059, 28.03877627306573]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "ghxm",
+        "name": "物流招商项目",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.883420163,
+        "lat": 28.0387762731,
+        "height": 0,
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.89212219212722, 28.044791550488462]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "ghxm",
+        "name": "美食城招商项目",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.892122192,
+        "lat": 28.0447915505,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.86865390814972, 28.037843524351437]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "ghxm",
+        "name": "农产品加工招商项目",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.868653908,
+        "lat": 28.0378435244,
+        "height": 0,
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.86407174609849, 28.05622656023648]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "ghxm",
+        "name": "休闲娱乐城招商项目",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.864071746,
+        "lat": 28.0562265602,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.8832570002655, 28.06218201121108]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "ghxm",
+        "name": "科技城招商项目",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.883257,
+        "lat": 28.0621820112,
+        "height": 0,
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.880605600859, 28.05513880663382]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "ghxm",
+        "name": "儿童游乐园招商项目",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.880605601,
+        "lat": 28.0551388066,
+        "height": 0
+      }
+    }
+  ]
+}

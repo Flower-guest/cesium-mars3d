@@ -1,0 +1,183 @@
+{
+  "type": "FeatureCollection",
+  "layer": { "type": "zldt" },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.86778559969423, 28.045210030492278]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "zdrq",
+        "name": "孤寡老人",
+        "url": "",
+        "lng": 112.8677856,
+        "lat": 28.0452100305,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.86859488837464, 28.03911045216531]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "wxydw",
+        "name": "煤气罐装厂",
+        "url": "",
+        "lng": 112.868594888,
+        "lat": 28.0391104522,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.86190387132889, 28.060621209223033]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "spjk",
+        "name": "视频监控",
+        "url": "",
+        "lng": 112.861903871,
+        "lat": 28.0606212092,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87773272578568, 28.06673302477798]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "spjk",
+        "name": "视频监控",
+        "url": "",
+        "lng": 112.877732726,
+        "lat": 28.0667330248,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87467749785418, 28.065109552526]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "spjk",
+        "name": "视频监控",
+        "url": "",
+        "lng": 112.874677498,
+        "lat": 28.0651095525,
+        "height": 0
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87299918469151, 28.044265020884186]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "zdrq",
+        "name": "重点关注人群",
+        "url": "",
+        "lng": 112.872999185,
+        "lat": 28.0442650209,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.8741766779664, 28.054551090889397]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "zdrq",
+        "name": "重点关注人群",
+        "url": "",
+        "lng": 112.874176678,
+        "lat": 28.0545510909,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.86626242069968, 28.06249441157285]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "zdrq",
+        "name": "重点关注人群",
+        "url": "",
+        "lng": 112.866262421,
+        "lat": 28.0624944116,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.89355279889841, 28.053377676690495]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "wxydw",
+        "name": "南方水泥厂",
+        "url": "",
+        "lng": 112.893552799,
+        "lat": 28.0533776767,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87570230904802, 28.036020075191306]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "wxydw",
+        "name": "鞭炮生产厂",
+        "url": "",
+        "lng": 112.875702309,
+        "lat": 28.0360200752,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87690767600893, 28.05536577301474]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "wxydw",
+        "name": "化工厂",
+        "url": "",
+        "lng": 112.876907676,
+        "lat": 28.055365773,
+        "height": 0
+      }
+    }
+  ]
+}

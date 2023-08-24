@@ -1,0 +1,182 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.86962107374286, 28.054585116280826]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "ld",
+        "name": "招商林地6",
+        "zhaoshang": 1,
+        "url": "",
+        "lng": 112.869621074,
+        "lat": 28.0545851163,
+        "height": 0,
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87647392143964, 28.032653284267102]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "syd",
+        "name": "招商水域8",
+        "zhaoshang": 1,
+        "url": "",
+        "lng": 112.876473921,
+        "lat": 28.0326532843,
+        "height": 0,
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.88263332621472, 28.052627159796035]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "syd",
+        "name": "招商水域9",
+        "zhaoshang": 1,
+        "url": "",
+        "lng": 112.882633326,
+        "lat": 28.0526271598,
+        "height": 0,
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.8721772947091, 28.060295822694826]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "jtd",
+        "name": "招商交通地1",
+        "zhaoshang": 1,
+        "url": "",
+        "lng": 112.872177295,
+        "lat": 28.0602958227,
+        "height": 0,
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.89820451903694, 28.04521139960987]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "jtd",
+        "name": "招商交通地2",
+        "zhaoshang": 1,
+        "url": "",
+        "lng": 112.898204519,
+        "lat": 28.0452113996,
+        "height": 0,
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87810283245965, 28.03276749839536]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "sfd",
+        "name": "招商商服地3",
+        "zhaoshang": 1,
+        "url": "",
+        "lng": 112.878102832,
+        "lat": 28.0327674984,
+        "height": 0,
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87767347179641, 28.060961609042245]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "sfd",
+        "name": "招商商服地4",
+        "zhaoshang": 1,
+        "url": "",
+        "lng": 112.877673472,
+        "lat": 28.060961609,
+        "height": 0,
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.89457172401384, 28.064029074201766]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "sfd",
+        "name": "招商商服地5",
+        "zhaoshang": 1,
+        "url": "",
+        "lng": 112.894571724,
+        "lat": 28.0640290742,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.89223849253612, 28.06445329810681]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "sfd",
+        "name": "招商商服地6",
+        "zhaoshang": 1,
+        "url": "",
+        "lng": 112.892238493,
+        "lat": 28.0644532981,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.8615454383563, 28.03449052387123]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "gd",
+        "name": "招商耕地4",
+        "zhaoshang": 1,
+        "url": "",
+        "lng": 112.861545438,
+        "lat": 28.0344905239,
+        "height": 0
+      }
+    }
+  ]
+}

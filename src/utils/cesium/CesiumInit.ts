@@ -6,15 +6,15 @@ import AddScene from "./AddSceneData"; //添加线面单体化等数据类
 import MapEvent from "./MapEvent"; //地图事件类
 import Mars3dAdd from "./Mars3dAddScene"; //添加场景类
 import DrawUnit from "./Draw"; //绘制
+import DivGraphic from "./DivGraphic"; //绘制div Billboard
 import Shp2JsonLayer from "./Shp2JsonLayer"; //shp转geojson
-import { toolMenu } from "../../pages/config/rigthPage";
 import {
   map3d,
   dJSON,
   dTiles,
   dLines,
-  dPoint,
   billboard,
+  billboardArr,
   CESIUM_ID,
 } from "./config/cesiumConfig";
 import "../../assets/css/cesiumNavigation.css";
@@ -28,12 +28,14 @@ class CesiumInit {
   map3d: any;
   drawUnit: any;
   previousTime: any;
-  constructor() {
+  divGraphic: any;
+  constructor(option:any = null) {
     this.viewer = null;
-    this.initMap();
+    this.initMap(option);
     this.initDataEvent();
   }
-  initMap() {
+  initMap(option) {
+    if (option) map3d.control["compass"] = option.compass;
     this.map3d = new mars3d.Map(CESIUM_ID, map3d);
     this.map3d.unbindContextMenu(); //解除绑定的右键菜单
     mars3d.layer["Shp2JsonLayer"] = Shp2JsonLayer;
@@ -50,6 +52,8 @@ class CesiumInit {
     this.mars3dAdd = new Mars3dAdd(viewer);
     // 初始化划线画面
     this.drawUnit = new DrawUnit(viewer);
+    // 初始化DIV数据图层
+    this.divGraphic = new DivGraphic(viewer);
     // 将设置好的viewer赋值
     this.viewer = viewer;
     // 初始化罗盘等工具
@@ -60,21 +64,19 @@ class CesiumInit {
     for (let i = 0; i < dTiles.length; i++) {
       this.mars3dAdd.addCesium3DTileSet(dTiles[i]);
     }
-    // 初始化标点
     for (let i = 0; i < billboard.length; i++) {
-      const { lng, lat, height, url, name, imgHeight } = billboard[i];
-      this.addScene.addBillboard(
-        lng,
-        lat,
-        height,
-        url,
-        name,
-        "rgba(0,250,154,0.5)",
-        billboard[i],
-        false,
-        50,
-        imgHeight || 60
-      );
+      const { lng, lat, height, type, name } = billboard[i];
+      this.divGraphic.addGradientPnl({
+        position: [lng, lat, height],
+        img: `mk_${type}.png`,
+        text: name,
+        diFar: 20000,
+        attr: billboard[i],
+      });
+    }
+    for (let i = 0; i < billboardArr.length; i++) {
+      // 初始化加载标点
+      this.addBillboard(billboardArr[i].url);
     }
   }
   // 初始化罗盘等工具
@@ -92,6 +94,53 @@ class CesiumInit {
     options.enableCompassOuterRing = true;
     new CesiumNavigation(viewer, options);
   }
+  addBillboard(res) {
+    const type = res?.layer?.type ?? null;
+    switch (type) {
+      case "zldt":
+        for (let i = 0; i < res.features.length; i++) {
+          const { properties } = res.features[i];
+          const { lng, lat, height, name, type } = properties;
+          this.mars3dAdd.addBillboard({
+            position: [lng, lat, height],
+            img: `mk_${type}.png`,
+            di: true,
+            diFar: 20000,
+            attr: properties,
+            label: {
+              text: name,
+              fs: 16,
+              color: "#CCF7FF",
+              outline: true,
+              outCol: "#707070",
+              outWid: 1,
+              bg: true,
+              bgc: "#041822",
+              bgo: 0.7,
+              bgp: [16, 4],
+              di: true,
+              diFar: 20000,
+              pY: -50,
+            },
+          });
+        }
+        break;
+      default:
+        for (let i = 0; i < res.features.length; i++) {
+          const { properties } = res.features[i];
+          const { lng, lat, height, name } = properties;
+          this.divGraphic.addNoVRDiv({
+            position: [lng, lat, height],
+            img: `test.png`,
+            text: name,
+            diFar: 20000,
+            attr: properties,
+            vr: properties?.vr ?? null,
+          });
+        }
+        break;
+    }
+  }
   // 地球自转
   rotation(viewer: any) {
     const that = this;
@@ -104,64 +153,52 @@ class CesiumInit {
     setTimeout(() => {
       viewer.clock.onTick.removeEventListener(cb);
       that.stopRotation();
-    }, 2000);
+    }, 1000);
   }
   // 停止自转执行函数
   stopRotation() {
+    const that = this;
     // 添加莲花山边界线
-    this.mars3dAdd.addGeoJsonLayer({
-      data: dJSON[4].url,
-      outCol: Cesium.Color.GAINSBORO,
-      opc: 0.5,
-      color: "rgb(0,0,0)",
-      name: "LHSBJX",
-      mask: true,
-    });
-    // 显示指定Billboard
-    this.addScene.showBillboard("all", toolMenu.cjdl);
+    setTimeout(() => {
+      that.mars3dAdd.addGeoJsonLayer({
+        data: dJSON[4].url,
+        outCol: Cesium.Color.GAINSBORO,
+        opc: 0.5,
+        color: "rgb(0,0,0)",
+        name: "LHSBJX",
+        mask: true,
+      });
+    }, 6000);
+
     // 加载线
     for (let i = 0; i < dLines.length; i++) {
       this.addLine(dLines[i].url);
     }
-    for (let i = 0; i < dPoint.length; i++) {
-      this.addPoint(dPoint[i].url);
-    }
     // 加载图层
-    // this.mars3dAdd.addXyzLayer({
-    //   url:
-    //     import.meta.env.VITE_BASE_URL +
-    //     "/DOM_LHS_PT_CS_WGS1984_Service/{z}/{x}/{y}.png", // 图层url
-    //   layer: "lhs", // 图层名
-    // });
+    this.mars3dAdd.addXyzLayer({
+      url:
+        import.meta.env.VITE_BASE_URL +
+        "/DOM_LHS_PT_CS_WGS1984_Service/{z}/{x}/{y}.png", // 图层url
+      layer: "lhs", // 图层名
+    });
     this.addScene.changeViews("LHS", 8);
   }
   addLine(res) {
     for (let i = 0; i < res.features.length; i++) {
       const { properties, geometry } = res.features[i];
       if (geometry.type !== "Polygon") {
-        const option = properties?.style
-          ? { positions: geometry.coordinates, style: properties.style }
-          : {
-              positions: geometry.coordinates,
-              width: 8,
-              color: properties.color,
-              di: true,
-              diFar: 200000,
-              label: {
-                text: properties.name,
-                color: properties.color,
-                clamp: true,
-                fs: 18,
-                addHeight: 20,
-                vD: false,
-                bg: true,
-                di: true,
-                diFar: 200000,
-              },
-            };
+        const option = {
+          positions: geometry.coordinates,
+          style: properties.style,
+          name: "LHSBJX",
+        };
         this.mars3dAdd.addPolylinePrimitive(option);
       } else {
-        const option = { positions: geometry.coordinates, style: properties.style }
+        const option = {
+          positions: geometry.coordinates,
+          style: properties.style,
+          name: "LHSBJX",
+        };
         this.mars3dAdd.addPolygonPrimitive(option);
       }
     }

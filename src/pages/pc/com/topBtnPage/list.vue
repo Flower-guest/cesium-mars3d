@@ -1,6 +1,6 @@
 <template>
   <!-- 列表 -->
-  <div class="list" :style="{maxHeight :height+'px'}">
+  <div class="list" :style="{ maxHeight: height + 'px' }">
     <div
       class="item"
       :style="{
@@ -35,7 +35,7 @@
 import getAssets from "@/utils/getAssets";
 interface detailProps {
   list: any;
-  height: number;
+  height?: number;
 }
 const props = withDefaults(defineProps<detailProps>(), {
   height: 300,

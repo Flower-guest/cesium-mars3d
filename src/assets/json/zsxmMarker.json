@@ -1,0 +1,318 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.86475702172594, 28.057682010793133]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "gscy",
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b",
+        "name": "蟠桃种植园",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.864757022,
+        "lat": 28.0576820108,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.86766132384506, 28.055093157218785]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "yccy",
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b",
+        "name": "九汇黄精厂",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.867661324,
+        "lat": 28.0550931572,
+        "height": 0
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87109862522948, 28.05078565295222]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "hhcy",
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b",
+        "name": "玫瑰种植园",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.871098625,
+        "lat": 28.050785653,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87990942941109, 28.060629823056367]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "gscy",
+        "name": "红富士苹果种植园",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.879909429,
+        "lat": 28.0606298231,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.88873111112872, 28.05822588759447]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "xmyzy",
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b",
+        "name": "肉食牛养殖场",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.888731111,
+        "lat": 28.0582258876,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87943081782592, 28.05446226012925]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "xmyzy",
+        "name": "长塘白羽鸡养殖场",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.879430818,
+        "lat": 28.0544622601,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.88922060024993, 28.04730484142369]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "gscy",
+        "name": "芒果种植园",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.8892206,
+        "lat": 28.0473048414,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87580859832902, 28.02997692653319]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "hhcy",
+        "name": "樱花种植园",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.875808598,
+        "lat": 28.0299769265,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87820165625489, 28.041963971234587]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "jgcy",
+        "name": "羊肚菌种植园",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.878201656,
+        "lat": 28.0419639712,
+        "height": 0
+      }
+    },
+
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87239305201666, 28.055267197795217]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "jgcy",
+        "name": "木耳种植园",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.872393052,
+        "lat": 28.0552671978,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.86618469832946, 28.040812312107825]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "gscy",
+        "name": "枇杷种植园",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.866184698,
+        "lat": 28.0408123121,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.86412884402043, 28.037663265428105]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "lycy",
+        "name": "远大粮油厂",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.864128844,
+        "lat": 28.0376632654,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.86998231809474, 28.03514647552992]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "yy",
+        "name": "陈家渔场",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.869982318,
+        "lat": 28.0351464755,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.87036575123969, 28.03320483534916]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "yy",
+        "name": "肉食鳄养殖场",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.870365751,
+        "lat": 28.0332048353,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.89365761517976, 28.03792840536874]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "yy",
+        "vr": "https://www.jgqxw.com/index/tour/show/vid/7be6c8829610652b",
+        "name": "巴沙鱼养殖场",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.893657615,
+        "lat": 28.0379284054,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.88643765064208, 28.040416641734833]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "yy",
+        "name": "黄骨鱼养殖场",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.886437651,
+        "lat": 28.0404166417,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.9043148811019, 28.033852048742755]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "lycy",
+        "name": "南县大米厂",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.904314881,
+        "lat": 28.0338520487,
+        "height": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.89423004551314, 28.060017281808864]
+      },
+      "properties": {
+        "Id": 0,
+        "type": "yy",
+        "name": "丰收渔场",
+        "zhaoshang": 0,
+        "url": "",
+        "lng": 112.894230046,
+        "lat": 28.0600172818,
+        "height": 0
+      }
+    }
+  ]
+}

@@ -9,7 +9,6 @@ class MapEvent {
   firstPosition: any;
   secondPosition: any;
   pickObj: any;
-  // pickShowLabel: any; //当前鼠标移入的label对象进行显示
   constructor(viewer) {
     this.viewer = viewer;
     this.highlightBuild = null;
@@ -25,41 +24,27 @@ class MapEvent {
    */
   addClick(ck: any) {
     const viewer = this.viewer;
-    const scene = this.viewer.scene;
+    // const scene = this.viewer.scene;
     const that = this;
     viewer.on(mars3d.EventType.click, function (e) {
       //获取位置
       const pick = viewer.scene.pick(e.position);
-      const picks = Cesium.SceneTransforms.wgs84ToWindowCoordinates(
-        scene,
-        e.cartesian
-      ); //将WGS84坐标中的位置转换为图形缓冲区坐标。
       const cartographic = cartesianToGeographic(e.cartesian); //弧度 由经度，纬度和高度定义的位置
       that.pickObj = { ...cartographic, ...pick }; //存储点击经纬度与点击对象的值
       if (pick && pick.id) {
-        const id = pick.id;
-        //点击表单弹窗showTable
-        if (id?.eventType == "showTable") {
-          const tableInfo = {
-            infoVal: id?.properties?.info?._value || id.properties,
-            cartographic,
-          };
-          ck && ck(tableInfo, "showTable");
-        } else if (id.type) {
-          // 将点击数据传给回调函数
-          ck && ck({ infoVal: id.properties, cartographic }, id.type);
-        } else if (id?.properties?.info?._value.isClick) {
-          //点击marker
-          const infoVal = id?.properties?.info?._value;
-          const billboardInfo = {
-            infoVal,
-            picks,
-            cartographic,
-          };
-          that.firstPosition = { x: picks.x, y: picks.y };
-          that.cartesian = e.cartesian;
-          ck && ck(billboardInfo, "billboard");
-        }
+        return;
+        // const id = pick.id;
+        // //点击表单弹窗showTable
+        // if (id?.eventType == "showTable") {
+        //   const tableInfo = {
+        //     infoVal: id?.properties?.info?._value || id.properties,
+        //     cartographic,
+        //   };
+        //   ck && ck(tableInfo, "showTable");
+        // } else if (id.type) {
+        //   // 将点击数据传给回调函数
+        //   ck && ck({ infoVal: id.properties, cartographic }, id.type);
+        // }
       } else {
         ck && ck({ cartographic });
       }
@@ -98,7 +83,7 @@ class MapEvent {
     viewer.scene.postRender.addEventListener(() => {
       // 获取相机位置与视角
       // const cameraPosition = viewer.camera.position;
-      // console.log(cameraPosition);
+      // console.log(mars3d.LngLatPoint.fromCartesian(cameraPosition));
       // const cameraHeading = viewer.camera.heading;
       // const cameraPitch = viewer.camera.pitch;
       // const cameraRoll = viewer.camera.roll;
@@ -121,23 +106,6 @@ class MapEvent {
       }
     });
   }
-  // 只执行一次的点击事件
-  // getCartographic(ck) {
-  //   const viewer = this.viewer;
-  //   // const that = this;
-  //   viewer.once(mars3d.EventType.leftDown, function (e) {
-  //     const pick = viewer.scene.pick(e.position);
-  //     const cartographic = mars3d.LngLatPoint.fromCartesian(e.cartesian); //弧度 由经度，纬度和高度定义的位置
-  //     ck(cartographic, pick);
-  //   });
-
-  //   //off移除事件
-  //   viewer.once(mars3d.EventType.rightClick, function () {
-  //     viewer.off(mars3d.EventType.leftDown);
-  //     ck();
-  //     // that.addClick(""); //添加点击事件 避免事件被删除
-  //   });
-  // }
   // 只执行一次的点击事件
   getCartographic(ck) {
     const viewer = this.viewer;

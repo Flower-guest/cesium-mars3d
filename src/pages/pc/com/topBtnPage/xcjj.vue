@@ -64,13 +64,13 @@
                   </template>
                 </div>
               </div>
-              <div style="height: 155px; width: max-content">
+              <div style="maxHeight: 150px; width: 100%">
                 <Vue3Marquee :vertical="true" :pause-on-hover="true">
                   <div
-                    class="text-20px mb-12px cursor-pointer"
-                    v-for="i in xcjjLB"
+                    class="w-100% hide text-20px mb-12px cursor-pointer"
+                    v-for="(i,idx) in xczxList"
                     :key="i"
-                    @click="(showOverlayDialog = true), (showType = 'text')"
+                    @click="showInfo(idx)"
                   >
                     {{ i }}
                   </div>
@@ -91,7 +91,9 @@
   <OverlayDialog v-show="showOverlayDialog">
     <template #overlayMain>
       <div class="overlayMain">
-        <div class="text-[#58E7FF] text-28px ml-170px mt-[-10px]">{{zxActive.label}}</div>
+        <div class="text-[#58E7FF] text-28px ml-170px mt-[-10px]">
+          {{ zxActive.label }}
+        </div>
         <img
           @click="showOverlayDialog = false"
           class="float-right mt-30px mr-49px w-48px h-48px"
@@ -113,9 +115,9 @@
           </el-carousel>
         </div>
         <div v-else>
-          <div class="mt-77px text-36px text-center">XXXX乡村简介</div>
-          <div class="mt-32px px-49px text-24px leading-1">
-            {{ xcjjOverlayMainText }}
+          <div class="mt-77px text-36px text-center">{{ info.title }}</div>
+          <div class="main mt-32px px-49px text-24px leading-1">
+            {{ info.main }}
           </div>
         </div>
       </div>
@@ -127,8 +129,8 @@
 import "./com.less";
 import {
   xcjjScrollText,
-  xcjjOverlayMainText,
   xcjjImgList,
+  test,
   tj,
   xcjjZX,
   xcjjLB,
@@ -138,10 +140,19 @@ const dialog = ref<boolean>(true); //可视化面板是否显示
 const showOverlayDialog = ref<boolean>(false); //是否显示弹窗
 const showType = ref<any>(); //弹窗显示类型
 const zxActive = ref<any>(xcjjZX[0]); //乡村资讯tab点击
+const xczxList = ref<any>(xcjjLB[xcjjZX[0].val]);
+const info = ref<any>(test[zxActive.value.val][0]);
 
 const infoClick = (i) => {
   zxActive.value = i;
+  xczxList.value = xcjjLB[i.val];
 };
+
+const showInfo = (idx) => {
+  showOverlayDialog.value = true;
+  showType.value = 'text';
+  info.value = test[zxActive.value.val][idx];
+}
 </script>
 
 <style lang="less" scoped>
@@ -154,7 +165,7 @@ const infoClick = (i) => {
       .el-carousel__indicators {
         display: none;
       }
-      .el-icon svg{
+      .el-icon svg {
         width: 12px;
         height: 12px;
       }
@@ -197,8 +208,33 @@ const infoClick = (i) => {
     height: 490px;
   }
 }
-
-.left::-webkit-scrollbar {
-  display: none; /* Chrome Safari */
+.main{
+    overflow: hidden;
+    height: 440px;
+    overflow-y: auto;
 }
+.main::-webkit-scrollbar {
+  width: 10px;
+}
+
+.main::-webkit-scrollbar-track {
+  background: rgb(179, 177, 177);
+  border-radius: 10px;
+}
+
+.main::-webkit-scrollbar-thumb {
+  background: #5c9099;
+  border-radius: 10px;
+}
+.hide{
+overflow:hidden; //超出的文本隐藏
+text-overflow:ellipsis; //溢出用省略号显示
+white-space:nowrap; //溢出不换行
+
+}
+
+.vue3-marquee{
+  width: 100% !important;
+}
+
 </style>

@@ -10,7 +10,13 @@ import LHSTDLYGHAreas from "@/assets/json/LHSTDLYGHAreas.json";
 import LHSYJJBNTBHX from "@/assets/json/LHSYJJBNTBHX.json";
 import LHSJTZSLine from "@/assets/json/LHSJTZSLine.json";
 import point from "@/assets/json/point.json";
-import { gjtArr, markerArr } from "./markerConfig";
+import zldtMarker from "@/assets/json/zldtMarker.json";
+import zsxmMarker from "@/assets/json/zsxmMarker.json";
+import zszcMarker from "@/assets/json/zszcMarker.json";
+import ghxmMarker from "@/assets/json/ghxmMarker.json";
+import qtzcMarker from "@/assets/json/qtzcMarker.json";
+import fwzcMarker from "@/assets/json/fwzcMarker.json";
+import { markerArr } from "./markerConfig";
 // 加载cesium的domId
 export const CESIUM_ID = "cesiumContainer";
 
@@ -52,7 +58,7 @@ export const map3d = {
     fullscreenButton: false,
     mouseDownView: false,
   },
-  terrain: { url: "http://data.mars3d.cn/terrain", show: true },
+  terrain: { url: "http://data.mars3d.cn/terrain", show: false },
   basemaps: [
     {
       id: 2021,
@@ -262,4 +268,26 @@ export const dPoint = [
 ];
 // 新增点位的回显与默认marker点位配置
 const markerInfo = LocalCache.getCache("markerInfo") || [];
-export const billboard = [...markerInfo, ...markerArr, ...gjtArr];
+export const billboard = [...markerInfo, ...markerArr];
+
+// 新增点位的回显与默认marker点位配置
+export const billboardArr = [
+  {
+    url: zldtMarker,
+  },
+  {
+    url: zsxmMarker,
+  },
+  {
+    url: zszcMarker,
+  },
+  {
+    url: ghxmMarker,
+  },
+  {
+    url: qtzcMarker,
+  },
+  {
+    url: fwzcMarker,
+  },
+];

@@ -7,7 +7,15 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: "/index",
-    component: () => import("@/pages/index.vue"),
+    component: () => import("@/pages/pc/index.vue"),
+    meta: {
+      title: "首页",
+    },
+    children: [],
+  },
+   {
+    path: "/mobile",
+    component: () => import("@/pages/mobile/index.vue"),
     meta: {
       title: "首页",
     },
