@@ -4,6 +4,7 @@ import { dTilesOption } from "./config/cesiumConfig";
 import { ElLoading } from "element-plus";
 export default class MeasureUnit {
   map3d: any;
+  tiles3dLayer: any; //加载3dTiles
   loadShp: any; //加载shp
   geoJsonLayer: any; //加载geoJson
   tileLayer: any; //添加影像图层
@@ -17,6 +18,8 @@ export default class MeasureUnit {
 
   constructor(map3d) {
     this.map3d = map3d;
+    // 3dTiles
+    this.tiles3dLayer = null;
     // geoJson
     this.geoJsonLayer = [];
     // polyline
@@ -79,24 +82,24 @@ export default class MeasureUnit {
   // }
   // 添加3DTile模型
   addCesium3DTileSet(obj) {
-    const tiles3dLayer = new mars3d.layer.TilesetLayer({
+    this.tiles3dLayer = new mars3d.layer.TilesetLayer({
       name: obj.name,
       url: obj.url,
       position: obj?.Pos
         ? {
             lng: obj.Pos.lng,
             lat: obj.Pos.lat,
-            alt: obj.heightOffset,
+            alt: obj.alt,
             alt_offset: obj.Pos.alt_offset,
           }
-        : { alt: obj.heightOffset },
+        : { alt: obj.alt },
       maximumScreenSpaceError: obj.max,
       scale: obj?.Pos ? obj.Pos.sca : 1,
       ...dTilesOption,
-      enableDebugWireframe: true, // 是否可以进行三角网的切换显示
-      flyTo: false,
+      enableDebugWireframe: false, // 是否可以进行三角网的切换显示
+      flyTo: obj?.flyTo ?? false,
     });
-    this.map3d.addLayer(tiles3dLayer);
+    this.map3d.addLayer(this.tiles3dLayer);
   }
   // mars3d添加GeoJsonLayer
   addGeoJsonLayer(option: any) {
@@ -300,6 +303,10 @@ export default class MeasureUnit {
   }
   // 删除元素
   deleteFn() {
+    if (this.tiles3dLayer) {
+      this.map3d.removeLayer(this.tiles3dLayer, true);
+      this.tiles3dLayer = null;
+    }
     if (this.geoJsonLayer.length > 0) {
       this.geoJsonLayer.forEach((i) => {
         if (i.name !== "LHSBJX") {

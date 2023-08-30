@@ -212,7 +212,7 @@ const updateShowTable = () => {
   }
 
   .dialog_table {
-    background: url("../../assets/img/table-bg.png") no-repeat;
+    background: url("../../../assets/img/table-bg.png") no-repeat;
     background-size: 100% 100%;
 
     :deep(.custom_table) {
@@ -237,7 +237,7 @@ const updateShowTable = () => {
     }
   }
   .dialog_jk {
-    background: url("../../assets/img/dialog-bg.png") no-repeat;
+    background: url("../../../assets/img/dialog-bg.png") no-repeat;
     background-size: 100% 100%;
   }
 
@@ -265,7 +265,7 @@ const updateShowTable = () => {
   max-height: 845px;
   box-sizing: border-box;
   background-color: #fff;
-  background: url("../../assets/img/info-bg.png") no-repeat;
+  background: url("../../../assets/img/info-bg.png") no-repeat;
   background-size: 100% 100%;
 
   .qj_icon {

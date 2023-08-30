@@ -6,21 +6,21 @@
           <div class="info_main">
             <!-- 轮播图 -->
             <el-carousel height="202px" :interval="3000">
-              <el-carousel-item v-for="item in xcjjImgList" :key="item">
+              <el-carousel-item v-for="i in props.ruralInfo.images" :key="i">
                 <img
-                  @click="(showOverlayDialog = true), (showType = 'img')"
+                  @click="showDialog(i,'img')"
                   class="w-100% h-100%"
-                  :src="getAssets(item)"
+                  :src="'https://cdn.fantere.com' + i"
                 />
               </el-carousel-item>
             </el-carousel>
             <!-- 滚动文字 -->
             <div class="jjxq_text mt-12px">
               <div
-                @click="(showOverlayDialog = true), (showType = 'text')"
+                @click="showDialog(props.ruralInfo.description,'text')"
                 class="scroll_text"
               >
-                {{ xcjjScrollText }}
+                {{ props.ruralInfo.description }}
               </div>
             </div>
             <!-- 乡村统计 -->
@@ -48,7 +48,7 @@
               </div>
             </div>
             <!-- 乡村资讯 -->
-            <div class="mt-20px">
+            <div class="mt-20px" v-if="props.pageType !== 'com'">
               <div class="main-title flex justify-between">
                 <span>乡村资讯</span>
                 <div class="flex">
@@ -64,11 +64,11 @@
                   </template>
                 </div>
               </div>
-              <div style="maxHeight: 150px; width: 100%">
+              <div style="maxheight: 150px; width: 100%">
                 <Vue3Marquee :vertical="true" :pause-on-hover="true">
                   <div
                     class="w-100% hide text-20px mb-12px cursor-pointer"
-                    v-for="(i,idx) in xczxList"
+                    v-for="(i, idx) in xczxList"
                     :key="i"
                     @click="showInfo(idx)"
                   >
@@ -91,9 +91,6 @@
   <OverlayDialog v-show="showOverlayDialog">
     <template #overlayMain>
       <div class="overlayMain">
-        <div class="text-[#58E7FF] text-28px ml-170px mt-[-10px]">
-          {{ zxActive.label }}
-        </div>
         <img
           @click="showOverlayDialog = false"
           class="float-right mt-30px mr-49px w-48px h-48px"
@@ -102,22 +99,24 @@
         <div v-if="showType == 'img'">
           <el-carousel class="mt-8% ml-8% w-80%" height="auto" :interval="3000">
             <el-carousel-item
-              v-for="item in xcjjImgList"
-              :key="item"
+              v-for="i in props.ruralInfo.images"
+              :key="i"
               class="aa"
             >
               <img
-                @click="(showOverlayDialog = true), (showType = 'img')"
                 class="w-100% h-100%"
-                :src="getAssets(item)"
+                :src="'https://cdn.fantere.com' + i"
               />
             </el-carousel-item>
           </el-carousel>
         </div>
         <div v-else>
-          <div class="mt-77px text-36px text-center">{{ info.title }}</div>
+          <div class="text-[#58E7FF] text-28px ml-170px mt-[-10px]">
+            {{ info?.label }}
+          </div>
+          <div class="mt-77px text-36px text-center">{{ info?.title }}</div>
           <div class="main mt-32px px-49px text-24px leading-1">
-            {{ info.main }}
+            {{ info?.main }}
           </div>
         </div>
       </div>
@@ -127,14 +126,7 @@
 
 <script lang="ts" setup>
 import "./com.less";
-import {
-  xcjjScrollText,
-  xcjjImgList,
-  test,
-  tj,
-  xcjjZX,
-  xcjjLB,
-} from "./pageConst";
+import { test, tj, xcjjZX, xcjjLB } from "./pageConst";
 import getAssets from "@/utils/getAssets";
 const dialog = ref<boolean>(true); //可视化面板是否显示
 const showOverlayDialog = ref<boolean>(false); //是否显示弹窗
@@ -143,6 +135,12 @@ const zxActive = ref<any>(xcjjZX[0]); //乡村资讯tab点击
 const xczxList = ref<any>(xcjjLB[xcjjZX[0].val]);
 const info = ref<any>(test[zxActive.value.val][0]);
 
+interface detailProps {
+  pageType: string;
+  ruralInfo: any;
+}
+const props = defineProps<detailProps>();
+
 const infoClick = (i) => {
   zxActive.value = i;
   xczxList.value = xcjjLB[i.val];
@@ -150,8 +148,14 @@ const infoClick = (i) => {
 
 const showInfo = (idx) => {
   showOverlayDialog.value = true;
-  showType.value = 'text';
-  info.value = test[zxActive.value.val][idx];
+  showType.value = "text";
+  info.value = { ...test[zxActive.value.val][idx],label:zxActive.value.label };
+};
+// 弹窗显示
+const showDialog = (val,type) => {
+  showOverlayDialog.value = true;
+  showType.value = type;
+  info.value = { main:val,title:null,label:null };
 }
 </script>
 
@@ -198,7 +202,7 @@ const showInfo = (idx) => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: url("../../../assets/img/overlay_dialog_bg.png") no-repeat;
+  background: url("../../../../assets/img/overlay_dialog_bg.png") no-repeat;
   background-size: 100% 100%;
   width: 1200px;
   height: 690px;
@@ -208,10 +212,10 @@ const showInfo = (idx) => {
     height: 490px;
   }
 }
-.main{
-    overflow: hidden;
-    height: 440px;
-    overflow-y: auto;
+.main {
+  overflow: hidden;
+  height: 440px;
+  overflow-y: auto;
 }
 .main::-webkit-scrollbar {
   width: 10px;
@@ -226,15 +230,13 @@ const showInfo = (idx) => {
   background: #5c9099;
   border-radius: 10px;
 }
-.hide{
-overflow:hidden; //超出的文本隐藏
-text-overflow:ellipsis; //溢出用省略号显示
-white-space:nowrap; //溢出不换行
-
+.hide {
+  overflow: hidden; //超出的文本隐藏
+  text-overflow: ellipsis; //溢出用省略号显示
+  white-space: nowrap; //溢出不换行
 }
 
-.vue3-marquee{
+.vue3-marquee {
   width: 100% !important;
 }
-
 </style>

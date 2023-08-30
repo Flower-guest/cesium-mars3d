@@ -15,43 +15,41 @@
 
 <script setup lang="ts">
 import CesiumInit from "@/utils/cesium/CesiumInit";
-
-
 // 初始化cesium
 const initCesium = async () => {
   const cesium = new CesiumInit();
- cesium.divGraphic.showDivGraphic("all", [
-      {
-        name: "交通设施",
-        menuType: "jtss",
-        eventType: "marker",
-      },
-      {
-        name: "政府机构",
-        menuType: "zfjg",
-        eventType: "marker",
-      },
-      {
-        name: "配套设施",
-        menuType: "ptss",
-        eventType: "marker",
-      },
-      {
-        name: "商超点位",
-        menuType: "scdw",
-        eventType: "marker",
-      },
-      {
-        name: "旅游景点",
-        menuType: "lyjd",
-        eventType: "marker",
-      },
-      {
-        name: "其它",
-        menuType: "qtdw",
-        eventType: "marker",
-      },
-    ]);
+  cesium.divGraphic.showDivGraphic("all", [
+    {
+      name: "交通设施",
+      menuType: "jtss",
+      eventType: "marker",
+    },
+    {
+      name: "政府机构",
+      menuType: "zfjg",
+      eventType: "marker",
+    },
+    {
+      name: "配套设施",
+      menuType: "ptss",
+      eventType: "marker",
+    },
+    {
+      name: "商超点位",
+      menuType: "scdw",
+      eventType: "marker",
+    },
+    {
+      name: "旅游景点",
+      menuType: "lyjd",
+      eventType: "marker",
+    },
+    {
+      name: "其它",
+      menuType: "qtdw",
+      eventType: "marker",
+    },
+  ]);
 };
 
 onMounted(() => {

@@ -1,7 +1,7 @@
 <template>
   <div class="top" v-if="weatherInfo">
     <div class="top_l">
-      <div class="title">乡村千寻多维可视化云平台</div>
+      <div class="title">{{ ruralInfo?.name }}</div>
       <div class="flex flex-1 text-[#DAE5E6]">
         <template v-for="i in btn" :key="i.type">
           <div
@@ -56,9 +56,22 @@
       </div>
     </div>
   </div>
-  <XXJJ v-if="topClickType == btn[0].type" />
-  <XCFZ v-else-if="topClickType == btn[1].type" @show-info="showInfo" />
-  <XCZL v-else @show-info="showInfo" />
+
+  <XXJJ
+    v-if="topClickType == btn[0].type && pageType != 'base'"
+    :page-type="pageType"
+    :rural-info="ruralInfo"
+  />
+  <XCFZ
+    v-else-if="topClickType == btn[1].type && pageType != 'base'"
+    @show-info="showInfo"
+  />
+  <XCZL
+    v-else-if="topClickType == btn[2].type"
+    @show-info="showInfo"
+    :page-type="pageType"
+  />
+
   <TableInfo
     :table-info="tableInfo"
     :show-table="showTable"
@@ -71,10 +84,17 @@ import TableInfo from "./tableInfo.vue";
 import XXJJ from "./topBtnPage/xcjj.vue";
 import XCFZ from "./topBtnPage/xcfz.vue";
 import XCZL from "./topBtnPage/xczl.vue";
-import { getWeather } from "@/service/api";
+import {
+  getWeather,
+  getRuralInfo,
+} from "@/service/api";
 import getAssets from "@/utils/getAssets";
 import { useTopTypeStore } from "@/store";
+
 const topType = useTopTypeStore();
+const router = useRouter();
+const pageType = ref<any>(router.currentRoute.value.meta.type);
+
 const btn = [
   {
     name: "乡村简介",
@@ -102,9 +122,11 @@ const topClickType = ref<any>(); //默认页面
 const showTable = ref<boolean>(false); //是否展示表单
 const tableInfo = ref<any>(); //点击建筑物table数据
 const showMany = ref<boolean>(false);
+const ruralInfo = ref<any>(); //村庄信息
 
 const init = async () => {
   weatherInfo.value = await getWeather();
+  ruralInfo.value = await getRuralInfo();
   topClick(btn[0].type);
 };
 // 页面切换按钮点击
@@ -219,8 +241,8 @@ init();
     bottom: 30px;
     width: 100%;
     height: 3px;
-    background: url("../../../assets/img/line_top.png") no-repeat left center/100%
-      auto;
+    background: url("../../../assets/img/line_top.png") no-repeat left
+      center/100% auto;
   }
 }
 </style>

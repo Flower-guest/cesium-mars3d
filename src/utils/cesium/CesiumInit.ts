@@ -11,7 +11,7 @@ import Shp2JsonLayer from "./Shp2JsonLayer"; //shp转geojson
 import {
   map3d,
   dJSON,
-  dTiles,
+  // dTiles,
   dLines,
   billboard,
   billboardArr,
@@ -29,12 +29,13 @@ class CesiumInit {
   drawUnit: any;
   previousTime: any;
   divGraphic: any;
-  constructor(option:any = null) {
+  constructor(option: any = null) {
     this.viewer = null;
     this.initMap(option);
     this.initDataEvent();
   }
   initMap(option) {
+    window.CESIUM_BASE_URL = "node_modules/cesium/Build/CesiumUnminified/";
     if (option) map3d.control["compass"] = option.compass;
     this.map3d = new mars3d.Map(CESIUM_ID, map3d);
     this.map3d.unbindContextMenu(); //解除绑定的右键菜单
@@ -61,9 +62,9 @@ class CesiumInit {
     // 地球自转
     this.rotation(viewer);
     // 加载3DTileset模型
-    for (let i = 0; i < dTiles.length; i++) {
-      this.mars3dAdd.addCesium3DTileSet(dTiles[i]);
-    }
+    // for (let i = 0; i < dTiles.length; i++) {
+    //   this.mars3dAdd.addCesium3DTileSet(dTiles[i]);
+    // }
     for (let i = 0; i < billboard.length; i++) {
       const { lng, lat, height, type, name } = billboard[i];
       this.divGraphic.addGradientPnl({
@@ -161,9 +162,9 @@ class CesiumInit {
     // 添加莲花山边界线
     setTimeout(() => {
       that.mars3dAdd.addGeoJsonLayer({
-        data: dJSON[4].url,
+        data: dJSON[0].url,
         outCol: Cesium.Color.GAINSBORO,
-        opc: 0.5,
+        opc: 0.3,
         color: "rgb(0,0,0)",
         name: "LHSBJX",
         mask: true,

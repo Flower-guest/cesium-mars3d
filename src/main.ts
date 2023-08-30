@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import route from "./router";
+import "@/router/permission";
 import pinia from "./store";
 import pluginMain from "./plugins";
 import MarsUIInstall from "./components/marsUI";

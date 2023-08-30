@@ -19,8 +19,10 @@ module.exports = {
         ".distance-",
         ".compass",
         ".navigation-",
-        ".marsBlueGradientPnl",
+        ".mars3d-camera-content",
         ".marsNoVRDiv",
+        ".mars3d-camera-line",
+        ".mars3d-camera-point",
       ], // 过滤掉.el-开头的class，不进行rem转换
     },
   },

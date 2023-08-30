@@ -1,5 +1,11 @@
 /**************** 中间竖直连线 ****************/
-.marsBlueGradientPnl {
+@media screen and (max-width: 500px) {
+  .mars3d-camera-content span{
+    font-size:14px !important;
+  }
+ }
+.mars3d-camera-content {
+  /* 防止下面的line一直随img动画 */
   padding: 3px 16px 0 1px;
   margin: 0;
   color: #CCF7FF;
@@ -8,51 +14,40 @@
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
-  min-height: 32px;
+  height: 32px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   white-space: nowrap;
-  font-size: 16px;
-}
-
-.marsBlueGradientPnl div {
   display: flex;
   align-items: center;
 }
 
-.marsBlueGradientPnl div img {
+.mars3d-camera-content img {
   width: 28px;
   height: 28px;
   margin-right: 6px;
 }
 
-.marsBlueGradientPnl div span {
+.mars3d-camera-content span {
+  font-size: 16px;
   margin-top: 3px;
 }
 
-.marsBlueGradientPnl:after {
-  content: "";
-  position: absolute;
-  bottom: -48px;
-  left: calc(50% - 3px);
-  display: block;
-  width: 3px;
+.mars3d-camera-line {
   height: 48px;
-  border-right: 3px solid #2bcdbb;
+  width: 3px;
+  border-left: 3px solid #2bcdbb;
+  margin-left: calc(50% - 1px);
 }
 
-.marsBlueGradientPnl::before {
-  content: "";
-  position: absolute;
-  bottom: -54px;
-  left: calc(50% - 1px);
-  display: block;
-  width: 6px;
-  height: 6px;
+.mars3d-camera-point {
   border-radius: 50%;
-  background: #FFFFFF;
+  width: 8px;
+  height: 8px;
+  margin-left: calc(50% - 4px);
+  background-color: #FFFFFF;
 }
 
 /**************** 带图片不带vr ****************/
@@ -99,7 +94,7 @@
   height: 100%;
 }
 
-.marsNoVRDiv .box .hidden { 
+.marsNoVRDiv .box .hidden {
   display:none;
 }
 

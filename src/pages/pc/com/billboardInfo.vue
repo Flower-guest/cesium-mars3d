@@ -123,7 +123,7 @@ const updateShowBillboard = () => {
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  background: url("../../assets/img/dialog-bg.png") no-repeat;
+  background: url("../../../assets/img/dialog-bg.png") no-repeat;
   background-size: 100% 100%;
   padding: 11px 25px 13px;
 }

@@ -92,7 +92,7 @@
               </div>
             </div>
             <!-- 列表 -->
-            <List :height="450" :list="zsInfoList" @show-info="showInfo"/>
+            <List :height="450" :list="zsInfoList" @show-info="showInfo" />
           </div>
         </template>
       </InfoDialog>
@@ -104,7 +104,6 @@
       :src="getAssets(dialog ? 'sq.png' : 'zk.png')"
     />
   </div>
-
 </template>
 
 <script lang="ts" setup>
@@ -123,8 +122,8 @@ const isShowScreen = ref<boolean>(false);
 const searchVal = ref<any>("");
 const zsInfoList = ref<any>(xcfzList[xcfzZS[0].val]);
 const listLength = computed(() => {
-  return zsInfoList.value.length || 0
-})
+  return zsInfoList.value.length || 0;
+});
 // 招商信息tab点击
 const infoClick = (i) => {
   zxActive.value = i.val;
@@ -137,9 +136,9 @@ const screening = (i) => {
 };
 
 const emit = defineEmits(["showInfo"]);
-const showInfo =(i)=>{
-  emit("showInfo",i);
-}
+const showInfo = (i) => {
+  emit("showInfo", i);
+};
 
 // 搜索事件
 const onSearch = debounce((value: string | number) => {

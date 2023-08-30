@@ -23,7 +23,7 @@
                 </div>
               </template>
             </div>
-            <div class="mt-27px">
+            <div class="mt-27px" v-show="props.pageType == 'whole'">
               <div class="main-title">
                 <span>资产管理</span>
               </div>
@@ -110,6 +110,11 @@ import getAssets from "@/utils/getAssets";
 import { debounce } from "@/utils/throttle";
 import * as echarts from "echarts";
 type EChartsOption = echarts.EChartsOption;
+
+interface detailProps {
+  pageType: string;
+}
+const props = defineProps<detailProps>();
 
 const dialog = ref<boolean>(true);
 const zxActive = ref<any>("fwzc"); //乡村资讯tab点击

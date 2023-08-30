@@ -5,7 +5,12 @@
     <!-- 顶部页面 -->
     <TopPage />
     <!-- 右边页面 -->
-    <RightPage @show-marker="showMarker" ref="rightPage" />
+    <RightPage
+      :btn-tool="wzbBtnTool"
+      :tool-menu="wzbToolMenu"
+      @show-marker="showMarker"
+      ref="rightPage"
+    />
     <!-- 表单弹窗 -->
     <TableInfo
       :table-info="tableInfo"
@@ -43,12 +48,13 @@
 
 <script setup lang="ts">
 import * as mars3d from "mars3d";
-import TopPage from "./com/topPage.vue";
-import RightPage from "./com/rightPage.vue";
-import TableInfo from "./com/tableInfo.vue"; //建筑物表单信息或监控弹窗显示页面
-import BillboardInfo from "./com/billboardInfo.vue";
+import TopPage from "../com/topPage.vue";
+import RightPage from "../com/rightPage.vue";
+import TableInfo from "../com/tableInfo.vue"; //建筑物表单信息或监控弹窗显示页面
+import BillboardInfo from "../com/billboardInfo.vue";
 import CesiumInit from "@/utils/cesium/CesiumInit";
-// import LocalCache from "@/utils/cache";
+import { wzbBtnTool, wzbToolMenu } from "../config/rigthPage";
+import { getMapMarkerSort } from "@/service/api";
 
 const toPageUrl = ref<any>(
   "https://www.jgqxw.com/index/tour/show/vid/23cc2027da9f65f6"
@@ -64,8 +70,13 @@ const rightPage = ref<any>();
 
 let cesium, mapEvent, divGraphic, mars3dAdd;
 
+// 获取右侧功能按钮菜单
+const initBtnTool = async () => {
+  const btnTool = await getMapMarkerSort();
+  console.log(btnTool);
+};
 // 初始化cesium
-const initCesium = async () => {
+const initCesium = () => {
   cesium = window.cesium = new CesiumInit();
   divGraphic = cesium.divGraphic; //添加场景对象
   mapEvent = cesium.mapEvent; //cesium事件对象
@@ -109,6 +120,7 @@ const showInfoTable = (info, type) => {
   }
 };
 onMounted(() => {
+  initBtnTool();
   initCesium();
 });
 </script>

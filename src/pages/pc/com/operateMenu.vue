@@ -127,6 +127,7 @@ const changeViews = (val, billArr: string[] = []) => {
             outCol: i.lineColor,
             color: i.polygonColor,
             outWid: 1,
+            opc: i.polygonColor == "manyColor" ? 0.6 : 1,
             randCol: i.polygonColor == "manyColor" ? true : false,
           });
         }
@@ -213,6 +214,7 @@ const changeViews = (val, billArr: string[] = []) => {
           outCol: val.lineColor,
           color: val.polygonColor,
           outWid: 1,
+          opc: val.polygonColor == "manyColor" ? 0.6 : 1,
           randCol: val.polygonColor == "manyColor" ? true : false,
         });
       }
@@ -222,6 +224,20 @@ const changeViews = (val, billArr: string[] = []) => {
       drawUnit.draw(val.menuType, () => {
         activeBtn.value = 0;
       });
+      break;
+    case "mx":
+      mars3dAdd.deleteFn();
+      // 如果有路径就进行模型加载否则就是切换镜头
+      if (val.url) {
+        mars3dAdd.addCesium3DTileSet({
+          name: val.name,
+          url: val.url,
+          max: val.max,
+          alt: val.alt,
+        });
+      }
+      addScene.changeViews(val.changeName);
+
       break;
   }
 };
@@ -319,7 +335,7 @@ onMounted(() => {
   color: #dae5e6;
   width: 164px;
   padding: 14px 14px 8px;
-  background: url("../../assets/img/sugges-list-bg.png") no-repeat;
+  background: url("../../../assets/img/sugges-list-bg.png") no-repeat;
   background-size: 100% 100%;
   margin-bottom: 20px;
   :deep(.checkbox) {
@@ -370,8 +386,8 @@ onMounted(() => {
       bottom: -6px;
       width: 100%;
       height: 8px;
-      background: url(../../assets/img/icon_gy.png) no-repeat left center/100%
-        auto;
+      background: url(../../../assets/img/icon_gy.png) no-repeat left
+        center/100% auto;
     }
   }
   .activeText {

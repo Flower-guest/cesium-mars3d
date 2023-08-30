@@ -71,7 +71,7 @@ dependencies:
   lodash: 4.17.21
   mars3d: 3.6.0_hqwytc3gopbe62pyx3jotbruxy
   mars3d-cesium: 1.108.0
-  mars3d-tdt: 3.6.0
+  mars3d-tdt: 3.6.3
   normalize.css: 8.0.1
   pinia: registry.npmmirror.com/pinia/2.0.22_bfjwoga25wxjazzogo7o372nwq
   pinia-plugin-persistedstate: registry.npmmirror.com/pinia-plugin-persistedstate/2.2.0_pinia@2.0.22
@@ -4148,8 +4148,8 @@ packages:
       '@cesium/widgets': 3.0.2
     dev: false
 
-  /mars3d-tdt/3.6.0:
-    resolution: {integrity: sha512-qkPPnfuixRLjipum88lB4eJ/w8fn8wFSU9B9FW9UI6uemizUlbv2PzLDZvU0ywuKTc85W2VtCdCp9uYA4YuB3Q==}
+  /mars3d-tdt/3.6.3:
+    resolution: {integrity: sha512-8yuyruf2JX3Qh93+yUD+ypyoecSscUchdedR2HknxB121jCOQ4CclJA2KpTWOJH1hOyrtTpHxvX+oHrmbSonkQ==}
     peerDependencies:
       bytebuffer: ^5.0.1
     dev: false

@@ -29,7 +29,7 @@
   </div>
   <!-- 划线功能按钮 -->
   <div class="draw_tool">
-    <template v-for="i in btnTool[topClickType]" :key="i.active">
+    <template v-for="i in props.btnTool[topClickType]" :key="i.active">
       <div class="tool_list" @click="toolClick(i)">
         <img
           class="ml-8px"
@@ -50,12 +50,12 @@
         />
       </div>
       <!-- 场景切换选项 -->
-      <template v-if="isShowXL(toolMenu[i.btnType])">
+      <template v-if="isShowXL(props.toolMenu[i.btnType])">
         <OperateMenu
           v-if="activeBtn == i.active"
           :many-class="i?.manyClass"
           :choose-type="i?.chooseType"
-          :tool-menu="toolMenu[i.btnType]"
+          :tool-menu="props.toolMenu[i.btnType]"
         />
       </template>
     </template>
@@ -80,12 +80,17 @@
 <script setup lang="ts">
 import OperateMenu from "./operateMenu.vue";
 import GraphicEditor from "./graphicEditor/index.vue";
-import { btnTool, toolMenu } from "../config/rigthPage";
 import getAssets from "@/utils/getAssets";
 import Coordtransform from "@/utils/cesium/Coordtransform";
 import { debounce } from "@/utils/throttle";
 import { useTopTypeStore } from "@/store";
 import * as mars3d from "mars3d";
+
+interface detailProps {
+  btnTool: any;
+  toolMenu: any;
+}
+const props = defineProps<detailProps>();
 
 const TMap = (window as any).TMap;
 const topTypeStore = useTopTypeStore();
@@ -267,7 +272,7 @@ defineExpose({
   }
 }
 .list {
-  background: url("../../assets/img/sugges-list-bg.png") no-repeat;
+  background: url("../../../assets/img/sugges-list-bg.png") no-repeat;
   background-size: 100% 100%;
 }
 </style>

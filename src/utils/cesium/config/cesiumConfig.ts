@@ -1,13 +1,13 @@
 import LocalCache from "@/utils/cache";
-import HNSAreas from "@/assets/json/HNSAreas.json";
-import CSAreas from "@/assets/json/CSAreas.json";
-import CSXZAreas from "@/assets/json/CSXZAreas.json";
-import YLQSQAreas from "@/assets/json/YLQSQAreas.json";
+// import HNSAreas from "@/assets/json/HNSAreas.json";
+// import CSAreas from "@/assets/json/CSAreas.json";
+// import CSXZAreas from "@/assets/json/CSXZAreas.json";
+// import YLQSQAreas from "@/assets/json/YLQSQAreas.json";
 import LHSAreas from "@/assets/json/LHSAreas.json";
-import LHSCZKFBJXAreas from "@/assets/json/LHSCZKFBJXAreas.json";
-import LHSSTBHHXAreas from "@/assets/json/LHSSTBHHXAreas.json";
-import LHSTDLYGHAreas from "@/assets/json/LHSTDLYGHAreas.json";
-import LHSYJJBNTBHX from "@/assets/json/LHSYJJBNTBHX.json";
+// import LHSCZKFBJXAreas from "@/assets/json/LHSCZKFBJXAreas.json";
+// import LHSSTBHHXAreas from "@/assets/json/LHSSTBHHXAreas.json";
+// import LHSTDLYGHAreas from "@/assets/json/LHSTDLYGHAreas.json";
+// import LHSYJJBNTBHX from "@/assets/json/LHSYJJBNTBHX.json";
 import LHSJTZSLine from "@/assets/json/LHSJTZSLine.json";
 import point from "@/assets/json/point.json";
 import zldtMarker from "@/assets/json/zldtMarker.json";
@@ -115,46 +115,46 @@ export const dTilesOption = {
  * @param {*} dataType:面数据类型 null|division:区划数据|build:建筑物数据
  */
 export const dJSON = [
-  {
-    url: HNSAreas,
-    name: "湖南省区划",
-    viewName: "HNS",
-    isMX: false,
-    height: 800,
-    pageType: "jj",
-    eventType: "moveHighlight",
-    dataType: "division",
-  },
-  {
-    url: CSAreas,
-    name: "长沙区划",
-    viewName: "CS",
-    isMX: false,
-    height: 100,
-    pageType: "sp",
-    eventType: "moveHighlight",
-    dataType: "division",
-  },
-  {
-    url: CSXZAreas,
-    name: "岳麓区",
-    viewName: "YLQ",
-    isMX: false,
-    height: 100,
-    pageType: "sp",
-    eventType: "moveHighlight",
-    dataType: "division",
-  },
-  {
-    url: YLQSQAreas,
-    height: 100,
-    name: "坪塘街道",
-    viewName: "PTJD",
-    isMX: false,
-    pageType: "sp",
-    eventType: "",
-    dataType: "",
-  },
+  // {
+  //   url: HNSAreas,
+  //   name: "湖南省区划",
+  //   viewName: "HNS",
+  //   isMX: false,
+  //   height: 800,
+  //   pageType: "jj",
+  //   eventType: "moveHighlight",
+  //   dataType: "division",
+  // },
+  // {
+  //   url: CSAreas,
+  //   name: "长沙区划",
+  //   viewName: "CS",
+  //   isMX: false,
+  //   height: 100,
+  //   pageType: "sp",
+  //   eventType: "moveHighlight",
+  //   dataType: "division",
+  // },
+  // {
+  //   url: CSXZAreas,
+  //   name: "岳麓区",
+  //   viewName: "YLQ",
+  //   isMX: false,
+  //   height: 100,
+  //   pageType: "sp",
+  //   eventType: "moveHighlight",
+  //   dataType: "division",
+  // },
+  // {
+  //   url: YLQSQAreas,
+  //   height: 100,
+  //   name: "坪塘街道",
+  //   viewName: "PTJD",
+  //   isMX: false,
+  //   pageType: "sp",
+  //   eventType: "",
+  //   dataType: "",
+  // },
   {
     url: LHSAreas,
     height: 100,
@@ -165,95 +165,95 @@ export const dJSON = [
     eventType: "",
     dataType: "",
   },
-  {
-    name: "高觉田园新村民计划",
-    viewName: "GJT",
-    isMX: false,
-    height: 50,
-    pageType: "zs",
-    eventType: "",
-    dataType: "point",
-    billboardType: 7,
-  },
-  {
-    url: LHSTDLYGHAreas,
-    name: "土地利用规划",
-    viewName: "LHS",
-    isMX: false,
-    height: 50,
-    pageType: "zs",
-    eventType: "",
-    dataType: "",
-    lineColor: "rgba(0,0,0,.6)",
-    lineWidth: 1,
-    polygonColor: "manyColor",
-  },
-  {
-    url: LHSCZKFBJXAreas,
-    name: "城镇开发边界",
-    viewName: "LHS",
-    isMX: false,
-    height: 50,
-    pageType: "zs",
-    eventType: "",
-    dataType: "",
-    lineColor: "rgba(0,0,0,.6)",
-    lineWidth: 1,
-    polygonColor: "rgba(192,233,247.6)",
-  },
-  {
-    url: LHSSTBHHXAreas,
-    name: "生态保护线",
-    viewName: "LHS",
-    isMX: false,
-    height: 50,
-    pageType: "zs",
-    eventType: "",
-    dataType: "",
-    lineColor: "rgba(0,0,0,.6)",
-    lineWidth: 1,
-    polygonColor: "rgba(151,255,99,.6)",
-  },
-  {
-    url: LHSYJJBNTBHX,
-    name: "基本农田保护线",
-    viewName: "LHS",
-    isMX: false,
-    height: 50,
-    pageType: "zs",
-    eventType: "",
-    dataType: "",
-    lineColor: "rgba(0,0,0,.6)",
-    lineWidth: 1,
-    polygonColor: "rgba(240,192,99.6)",
-  },
+  // {
+  //   name: "高觉田园新村民计划",
+  //   viewName: "GJT",
+  //   isMX: false,
+  //   height: 50,
+  //   pageType: "zs",
+  //   eventType: "",
+  //   dataType: "point",
+  //   billboardType: 7,
+  // },
+  // {
+  //   url: LHSTDLYGHAreas,
+  //   name: "土地利用规划",
+  //   viewName: "LHS",
+  //   isMX: false,
+  //   height: 50,
+  //   pageType: "zs",
+  //   eventType: "",
+  //   dataType: "",
+  //   lineColor: "rgba(0,0,0,.6)",
+  //   lineWidth: 1,
+  //   polygonColor: "manyColor",
+  // },
+  // {
+  //   url: LHSCZKFBJXAreas,
+  //   name: "城镇开发边界",
+  //   viewName: "LHS",
+  //   isMX: false,
+  //   height: 50,
+  //   pageType: "zs",
+  //   eventType: "",
+  //   dataType: "",
+  //   lineColor: "rgba(0,0,0,.6)",
+  //   lineWidth: 1,
+  //   polygonColor: "rgba(192,233,247.6)",
+  // },
+  // {
+  //   url: LHSSTBHHXAreas,
+  //   name: "生态保护线",
+  //   viewName: "LHS",
+  //   isMX: false,
+  //   height: 50,
+  //   pageType: "zs",
+  //   eventType: "",
+  //   dataType: "",
+  //   lineColor: "rgba(0,0,0,.6)",
+  //   lineWidth: 1,
+  //   polygonColor: "rgba(151,255,99,.6)",
+  // },
+  // {
+  //   url: LHSYJJBNTBHX,
+  //   name: "基本农田保护线",
+  //   viewName: "LHS",
+  //   isMX: false,
+  //   height: 50,
+  //   pageType: "zs",
+  //   eventType: "",
+  //   dataType: "",
+  //   lineColor: "rgba(0,0,0,.6)",
+  //   lineWidth: 1,
+  //   polygonColor: "rgba(240,192,99.6)",
+  // },
 ];
 // 加载模型数据
-export const dTiles = [
-  {
-    url: import.meta.env.VITE_BASE_URL + "/3dCock/M_S_LeWoJu/tileset.json",
-    heightOffset: -2,
-    max: 256,
-    name: "乐沃居",
-    viewName: "LeWoJu",
-    isMX: true,
-  },
-  {
-    url: import.meta.env.VITE_BASE_URL + "/3dCock/M_S_ZongHeTi/tileset.json",
-    heightOffset: 6,
-    max: 100,
-    name: "综合体",
-    viewName: "LeWoJu",
-    isChangePos: true,
-    Pos: {
-      lng: 113.01805013225533,
-      lat: 28.079512489864833,
-      alt: 55,
-      sca: 0.2,
-    },
-    isMX: true,
-  },
-];
+// export const dTiles = [
+//   {
+//     url: import.meta.env.VITE_BASE_URL + "/3dCock/M_S_LeWoJu/tileset.json",
+//     heightOffset: -2,
+//     max: 256,
+//     name: "乐沃居",
+//     viewName: "LeWoJu",
+//     isMX: true,
+//   },
+//   {
+//     url: import.meta.env.VITE_BASE_URL + "/3dCock/M_S_ZongHeTi/tileset.json",
+//     heightOffset: 6,
+//     max: 100,
+//     name: "综合体",
+//     viewName: "LeWoJu",
+//     isChangePos: true,
+//     Pos: {
+//       lng: 113.01805013225533,
+//       lat: 28.079512489864833,
+//       alt: 55,
+//       sca: 0.2,
+//     },
+//     isMX: true,
+//   },
+// ];
 // 加载线数据
 export const dLines = [
   {

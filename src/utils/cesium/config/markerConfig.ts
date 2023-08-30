@@ -143,18 +143,6 @@ export const markerArr = [
     showLable: false,
   },
   {
-    url: "mk_fz.png",
-    name: "旅游景点3",
-    lng: 112.87935490966855,
-    lat: 28.057777074607632,
-    height: 5,
-    videoUrl: "http://demo.fantere.com/3dCockpit/assets/test.2a8a8f3c.mp4",
-    type: "lyjd",
-    showDis: 20000,
-    showLable: false,
-    isClick: true,
-  },
-  {
     url: "mk_cy.png",
     name: "坪塘服务区",
     lng: 112.88144800582089,

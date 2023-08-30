@@ -22,13 +22,14 @@ export default class DivGraphic {
     const graphic = new mars3d.graphic.DivGraphic({
       position: option.position,
       style: {
-        html: `<div class="marsBlueGradientPnl">
-              <div><img src="${imgUrl}"><span>${option.text}</span></div>
-          </div>`,
-        offsetY: -60,
-        horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
-        verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
-        clampToGround: true,
+        html: ` <div class="mars3d-camera-content">
+                      <img src="${imgUrl}" />
+                    <span style=" font-size: 16px;">${option.text}</span>
+                      </div>
+                    <div class="mars3d-camera-line" ></div>
+                    <div class="mars3d-camera-point"></div>`,
+        offsetX: -66,
+        offsetY: 4,
         distanceDisplayCondition: new Cesium.DistanceDisplayCondition(
           0,
           option?.diFar ?? Number.MAX_VALUE
@@ -59,8 +60,8 @@ export default class DivGraphic {
               </div>
           </div></div>`,
         // offsetY: -60,
-        // horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
-        // verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+        horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+        verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
         clampToGround: true,
         distanceDisplayCondition: new Cesium.DistanceDisplayCondition(
           0,

@@ -16,6 +16,7 @@ class MapEvent {
     this.firstPosition = null;
     this.secondPosition = null;
     this.pickObj = null;
+    // this.scenePostRender(null);
   }
 
   /**
